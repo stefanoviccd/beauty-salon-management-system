@@ -1,0 +1,56 @@
+<ion-app>
+  <ion-content>
+  <ion-header justify-content-center align-items-center>
+      <ion-toolbar >
+        <ion-title></ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-grid style="height: 100%;">
+      <ion-row justify-content-center align-items-center style="height: 100%; ">
+        <ion-col size="12" size-sm="10" offset-sm="1" size-md="8" offset-md="2" size-lg="6" offset-xl="3">
+          <ion-card>
+            <ion-card-header >
+              <ion-card-title >
+                User Login
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content lines="none">
+              <ion-item>
+                <ion-label position="fixed" >
+                  Username
+                </ion-label>
+                <br />
+                <ion-input placeholder="Enter Username" [(ngModel)]="username"></ion-input>
+
+              </ion-item>
+              <ion-item style="margin-bottom: 15px;">
+                <ion-label position="fixed" >
+                  Password
+                </ion-label>
+                <ion-input type="password" placeholder="Enter Password" [(ngModel)]="password"></ion-input>
+
+              </ion-item>
+
+              <ion-button color="success" expand="block" (click)="loginUser()">Prijavi se</ion-button>
+              Nemate nalog?
+              <ion-button color="secondary" expand="block"(click)="register()">Registracija</ion-button>
+
+
+
+            </ion-card-content>
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-footer>
+      <ion-toolbar>
+        <ion-title></ion-title>
+      </ion-toolbar>
+    </ion-footer>
+
+  </ion-content>
+</ion-app>
+

@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase:{
+      apiKey: 'AIzaSyAcemv2MBsHfdNNN8eaW_2bGu7VhxkAH0I',
+      authDomain: 'beauty-salon-management-system.firebaseapp.com',
+      projectId: 'beauty-salon-management-system',
+      storageBucket: 'beauty-salon-management-system.appspot.com',
+      messagingSenderId: '684171664401',
+      appId: '1:684171664401:web:527e2beb5dceb15b6665b0',
+      measurementId: 'G-PMHNX93N0T'
+
+  }
+
 };
 
 /*
