@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private dataAuth: AngularFireAuth) { }
 
   ngOnInit() {
+  }
+  logoutUser(){
+    this.dataAuth.signOut();
+    this.router.navigate(['login']);
+
   }
 
 }
