@@ -16,26 +16,28 @@ const routes: Routes = [
     children: [
       {
         path: 'newAppointment',
-        component: NewAppointmentPage
+        component: NewAppointmentPage,
+      },
+      {
+        path: 'scheduledAppointments',
+        component: NewAppointmentPage,
       },
       {
         path: 'myAppointments',
-        component: MyAppointmentsPage
+        component: MyAppointmentsPage,
       },
       {
-        path: 'admin/treatments',
-        component: TreatmentsPage
+        path: 'treatments',
+        component: TreatmentsPage,
+        children: [
+          {
+            path: 'addTreatment',
+          component: AddTreatmentPage
+        }
+        ]
       },
-      {
-        path: 'admin/addTreatments',
-        component: AddTreatmentPage
-      },
-
-    ]
+    ],
   },
-
-
-
 ];
 
 @NgModule({

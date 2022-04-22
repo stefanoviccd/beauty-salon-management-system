@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddTreatmentPage } from '../add-treatment/add-treatment.page';
+import { LoginPage } from '../login/login.page';
 
 import { TreatmentsPage } from './treatments.page';
 
-const routes: Routes = [
-  {
+const routes: Routes = [{
     path: '',
     component: TreatmentsPage,
     children: [
       {
         path: 'addTreatment',
-       component: AddTreatmentPage
-      }
+      component: AddTreatmentPage
+    }
     ]
   },
-  {
-    path: 'addTreatment',
-    component: AddTreatmentPage
-  },
+
 ];
 
 @NgModule({
