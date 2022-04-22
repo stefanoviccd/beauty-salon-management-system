@@ -2,7 +2,7 @@
   <ion-content>
   <ion-header justify-content-center align-items-center>
       <ion-toolbar >
-        <ion-title slot="start">Beauty studio</ion-title>
+        <ion-title></ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -12,29 +12,30 @@
           <ion-card>
             <ion-card-header >
               <ion-card-title >
-                User Login
+                Nova usluga
               </ion-card-title>
             </ion-card-header>
             <ion-card-content lines="none">
               <ion-item>
-                <ion-label position="fixed" >
-                  Username
+                <ion-label >
+                  Naziv
                 </ion-label>
                 <br />
-                <ion-input placeholder="Enter Username" [(ngModel)]="username"></ion-input>
+                <ion-input type="text" placeholder="Unesite naziv usluge"></ion-input>
+
+
 
               </ion-item>
               <ion-item style="margin-bottom: 15px;">
-                <ion-label position="fixed" >
-                  Password
+                <ion-label >
+                 Cena
                 </ion-label>
-                <ion-input type="password" placeholder="Enter Password" [(ngModel)]="password"></ion-input>
+                <ion-input type="text" placeholder="Unesite cenu usluge" ></ion-input>
 
               </ion-item>
 
-              <ion-button color="success" expand="block" (click)="loginUser()">Prijavi se</ion-button>
-              Nemate nalog?
-              <ion-button color="secondary" expand="block"(click)="register()">Registracija</ion-button>
+              <ion-button color="success" expand="block" >Dodaj uslugu</ion-button>
+
 
 
 

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Beauty studio</ion-title>
-    <ion-menu-toggle>
+    <ion-menu-toggle >
       <ion-icon name="menu-outline"></ion-icon>
     </ion-menu-toggle>
   </ion-toolbar>
@@ -13,11 +13,22 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
+
     <ion-list>
       <ion-item
         ><a routerLink="/home/newAppointment">Zakaži termin</a></ion-item
       >
       <ion-item><a routerLink="/home/myAppointments">Moji termini</a></ion-item>
+      <ion-item (click)="logoutUser()">Odjavi me</ion-item>
+    </ion-list>
+    <hr color="ff4d4d" size="2px">
+    <ion-item lines="none">Ovo treba da bude menu za admina</ion-item>
+    <hr color="ff4d4d" size="2px">
+    <ion-list>
+      <ion-item
+        ><a routerLink="/home/admin/scheduledAppointments">Zakazani termini</a></ion-item
+      >
+      <ion-item><a routerLink="/home/admin/treatments">Usluge</a></ion-item>
       <ion-item (click)="logoutUser()">Odjavi me</ion-item>
     </ion-list>
   </ion-content>

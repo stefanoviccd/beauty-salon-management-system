@@ -33,7 +33,13 @@ const routes: Routes = [
   {
     path: 'my-appointments',
     loadChildren: () => import('./pages/my-appointments/my-appointments.module').then( m => m.MyAppointmentsPageModule)
-  }
+  },
+  {
+    path: 'treatments',
+    loadChildren: () => import('./pages/treatments/treatments.module').then( m => m.TreatmentsPageModule)
+  },
+
+
 
 
 ];
