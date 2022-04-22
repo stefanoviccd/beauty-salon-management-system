@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'all-treatments',
     loadChildren: () => import('./pages/all-treatments/all-treatments.module').then( m => m.AllTreatmentsPageModule)
   },
+  {
+    path: 'add-day-of',
+    loadChildren: () => import('./pages/add-day-of/add-day-of.module').then( m => m.AddDayOfPageModule)
+  },
 
 
 
