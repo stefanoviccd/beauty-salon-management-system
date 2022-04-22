@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
     const{ username, password}= this;
     try{
       const user= await this.auth.signInWithEmailAndPassword(username+'@gmail.com', password);
-      this.allertAll('Dobrodošli', 'Uspešno ste se prijavili!');
+      //this.allertAll('Dobrodošli', 'Uspešno ste se prijavili!');
       this.route.navigate(['home']);
 
 
