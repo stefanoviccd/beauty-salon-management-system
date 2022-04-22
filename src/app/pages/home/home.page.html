@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Beauty studio</ion-title>
-    <ion-menu-toggle >
+    <ion-menu-toggle>
       <ion-icon name="menu-outline"></ion-icon>
     </ion-menu-toggle>
   </ion-toolbar>
 </ion-header>
 <ion-menu side="start" menuId="first" contentId="main">
   <ion-header>
-    <ion-toolbar color="secondary" style="padding-right: 15px">
+    <ion-toolbar color="secondary" style="padding-right: 0px">
       <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
     </ion-toolbar>
   </ion-header>
@@ -19,6 +19,9 @@
         ><a routerLink="/home/newAppointment">Zakaži termin</a></ion-item
       >
       <ion-item><a routerLink="/home/myAppointments">Moji termini</a></ion-item>
+      <ion-item
+      ><a routerLink="/home/showTreatments">Pogledaj usluge</a></ion-item
+    >
       <ion-item (click)="logoutUser()">Odjavi me</ion-item>
     </ion-list>
     <hr color="ff4d4d" size="2px">
@@ -29,7 +32,10 @@
         ><a routerLink="/home/scheduledAppointments">Zakazani termini</a></ion-item
       >
       <ion-item><a routerLink="/home/treatments">Usluge</a></ion-item>
-      <ion-item >Odjavi me</ion-item>
+      <ion-item
+      ><a routerLink="#">Neradni dani</a></ion-item
+    >
+      <ion-item (click)="logoutUser()">Odjavi me</ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>

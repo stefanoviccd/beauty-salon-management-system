@@ -30,10 +30,20 @@ const routes: Routes = [
     path: 'my-appointments',
     loadChildren: () => import('./pages/my-appointments/my-appointments.module').then( m => m.MyAppointmentsPageModule)
   },
+
+  {
+    path: 'scheduled-appointments',
+    loadChildren: () => import('./pages/scheduled-appointments/scheduled-appointments.module').then( m => m.ScheduledAppointmentsPageModule)
+  },
   {
     path: 'treatments',
     loadChildren: () => import('./pages/treatments/treatments.module').then( m => m.TreatmentsPageModule)
   },
+  {
+    path: 'all-treatments',
+    loadChildren: () => import('./pages/all-treatments/all-treatments.module').then( m => m.AllTreatmentsPageModule)
+  },
+
 
 
 
@@ -47,3 +57,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+

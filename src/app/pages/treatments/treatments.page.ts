@@ -12,10 +12,7 @@ export class TreatmentsPage implements OnInit {
 
   ngOnInit() {
   }
-  showAddTreatment(){
-    this.router.navigate(['home/treatments/addTreatment']);
-   //this.router.navigate(['login']);
 
-  }
+
 
 }
