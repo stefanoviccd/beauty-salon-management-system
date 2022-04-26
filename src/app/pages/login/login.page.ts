@@ -31,14 +31,22 @@ export class LoginPage implements OnInit {
      // async before function means that this function always return a promise
     const{ username, password}= this;
     try{
-      const user= await this.auth.signInWithEmailAndPassword(username+'@gmail.com', password);
+
+          const user= await this.auth.signInWithEmailAndPassword(username+'@gmail.com', password);
       //this.allertAll('Dobrodošli', 'Uspešno ste se prijavili!');
       this.route.navigate(['home/myAppointments']);
 
 
+
     }
     catch(error){
+      if(this.username==='' || this.password==='' || this.username==null || this.password==null){
+        this.allertAll('Greška', 'Morate uneti kredencijale');
 
+      }
+      else{
+        this.allertAll('Greška', 'Neispravno korisničko ime ili lozinka. Pokušajte ponovo.');
+      }
     }
 
   }

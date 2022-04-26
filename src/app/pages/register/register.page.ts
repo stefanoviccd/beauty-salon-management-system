@@ -32,7 +32,21 @@ export class RegisterPage implements OnInit {
     this.router.navigate(['login']);
     }
     catch(error){
-      this.allertAll('Greška!', error.message);
+      if(this.username==='' || this.password==='' || this.confirmedpassword==='' || this.username==null || this.password==null
+      || this.confirmedpassword==null){
+        this.allertAll('Greška', 'Morate uneti kredencijale');
+
+      }
+      else{
+        if(!(this.password===this.confirmedpassword)){
+          this.allertAll('Greška', 'Lozinke se ne poklapaju.');
+        }
+        else{
+          this.allertAll('Greška!', error.message);
+        }
+
+      }
+
     }
 
   }
