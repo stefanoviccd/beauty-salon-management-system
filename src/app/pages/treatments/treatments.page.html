@@ -1,63 +1,91 @@
-<!--<ion-header>
+<ion-header>
   <ion-toolbar>
     <ion-title>treatments</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-grid>
-  <ion-row>
-    <ion-col size="6"
-      ><ion-icon name="color-wand-outline"></ion-icon><br />Sve
-      usluge</ion-col
-    >
-
-    <ion-col routerLink="new" size="6"
-      ><ion-icon name="add-outline"></ion-icon><br />
-      Nova usluga
-    </ion-col
-    >
-  </ion-row>
-
-
-
-</ion-grid>
-
-
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6"
-        ><ion-icon name="color-wand-outline"></ion-icon><br />Sve
-        usluge</ion-col
-      >
+  <ion-button color="secondary"(click)="openForm()">Dodaj uslugu</ion-button>
 
-      <ion-col routerLink="new" size="6"
-        ><ion-icon name="add-outline"></ion-icon><br />
-        Nova usluga
-      </ion-col
-      >
-    </ion-row>
+<div *ngIf="isOpenForm()===true" >
+  <ion-grid style="height: 100%;">
+
+      <ion-col size="12" size-sm="10" offset-sm="1" size-md="8" offset-md="2" size-lg="6" offset-xl="3">
+        <ion-card>
+          <ion-card-header >
+            <ion-card-title >
+              Nova usluga
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content lines="none">
+            <ion-item>
+              <ion-label position="fixed" >
+                Naziv usluge
+              </ion-label>
+              <br />
+              <ion-input placeholder="Unesite naziv usluge"></ion-input>
+
+            </ion-item>
+            <ion-item>
+              <ion-label position="fixed" >
+                Opis usluge
+              </ion-label>
+              <br />
+              <ion-input placeholder="Unesite opis usluge"></ion-input>
+
+            </ion-item>
+            <ion-item style="margin-bottom: 15px;">
+              <ion-label position="fixed" >
+                Cena usluge
+              </ion-label>
+              <ion-input type="text" placeholder="Unesite cenu usluge."></ion-input>
+
+            </ion-item>
+
+            <ion-button color="success" expand="block" (click)="closeForm()">Dodaj uslugu</ion-button>
 
 
+
+
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
 
   </ion-grid>
+</div>
 
+<ion-grid>
+  <ion-row >
+    <ion-col size="12">
+      <b>Manikir</b><br>Mogao bi da stoji opis usluge ili čak slika koju nisam uspela da stavim. <br>Cena usluge je <b>1200 dinara</b>.<br>
+      <ion-button color="secondary">Obriši</ion-button>
+      <ion-button color="light">Izmeni</ion-button>
+    </ion-col>
 
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <b>Pedikir</b><br> dgfvhjdksdfhjksdjfksxalislduhvndkhvdfjknvbdfjferukifjemfroe. <br>Cena usluge je <b>1200 dinara</b>.<br>
+      <ion-button color="secondary">Obriši</ion-button><ion-button color="light">Izmeni</ion-button>
+    </ion-col>
 
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <b>Masaža</b><br> dgfvhjdksdfhjksdjfksxalislduhvndkhvdfjknvbdfjferukifjemfroe. <br>Cena usluge je  <b>1200 dinara</b>.<br>
+      <ion-button color="secondary">Obriši</ion-button><ion-button color="light">Izmeni</ion-button>
+    </ion-col>
+
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <b>Depilacija</b><br> dgfvhjdksdfhjksdjfksxalislduhvndkhvdfjknvbdfjferukifjemfroe. <br>Cena usluge je  <b>1200 dinara</b>.<br>
+      <ion-button color="secondary">Obriši</ion-button><ion-button color="light">Izmeni</ion-button>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>
 
 </ion-content>
-
-
-
-
-
--->
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Beauty studio</ion-title>
-    <ion-menu-toggle>
-      <ion-icon name="menu-outline"></ion-icon>
-    </ion-menu-toggle>
-  </ion-toolbar>
-</ion-header>
-<ion-menu side="start" menuId="first" contentId="main">
+<ion-footer></ion-footer>

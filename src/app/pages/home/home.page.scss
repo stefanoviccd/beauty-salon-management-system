@@ -1,13 +1,18 @@
-ion-toolbar{
+ion-footer ion-toolbar{
   --background: #ff9999;
   --color: black;
+  font: italic 1.2em "Fira Sans", serif;
 }
 ion-menu-toggle{
   margin-left: 20px;
 }
 a{
   text-decoration: none;
-  color: black;
+  color: black;}
+ ion-toolbar{
+  --background: #ff9999;
+  --color: black;
+
 }
 
 

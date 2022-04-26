@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './pages/home/home.page';
+import { TreatmentsPage } from './pages/treatments/treatments.page';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
 
@@ -36,16 +38,21 @@ const routes: Routes = [
     loadChildren: () => import('./pages/scheduled-appointments/scheduled-appointments.module').then( m => m.ScheduledAppointmentsPageModule)
   },
   {
-    path: 'treatments',
-    loadChildren: () => import('./pages/treatments/treatments.module').then( m => m.TreatmentsPageModule)
-  },
-  {
     path: 'all-treatments',
     loadChildren: () => import('./pages/all-treatments/all-treatments.module').then( m => m.AllTreatmentsPageModule)
   },
   {
     path: 'add-day-of',
     loadChildren: () => import('./pages/add-day-of/add-day-of.module').then( m => m.AddDayOfPageModule)
+  },
+  {
+    path: 'treatments',
+    component: TreatmentsPage,
+    loadChildren: () => import('./pages/treatments/treatments.module').then( m => m.TreatmentsPageModule)
+  },
+  {
+    path: 'manage-treatments',
+    loadChildren: () => import('./pages/manage-treatments/manage-treatments.module').then( m => m.ManageTreatmentsPageModule)
   },
 
 

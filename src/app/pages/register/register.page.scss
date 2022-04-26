@@ -3,3 +3,10 @@ ion-card{
   background-repeat: no-repeat;
   background-size: cover;
 }
+ion-toolbar{
+  --background: #ff9999;
+  --color: black;
+}
+ion-back-button{
+  color: black;
+}

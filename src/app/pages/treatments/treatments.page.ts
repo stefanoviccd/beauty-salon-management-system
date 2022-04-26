@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-treatments',
@@ -7,12 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./treatments.page.scss'],
 })
 export class TreatmentsPage implements OnInit {
+  public open: boolean;
 
-  constructor(private router: Router) { }
+  constructor() {
+    this.open=false;
+   }
 
   ngOnInit() {
   }
-
-
+  openForm(){
+    this.open=true;
+    console.log('Form opened!');
+  }
+  isOpenForm(){
+    return this.open;
+  }
+  closeForm(){
+    this.open=false;
+    console.log('Form closed!');
+  }
 
 }

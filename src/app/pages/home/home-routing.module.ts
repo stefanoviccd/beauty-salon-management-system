@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddDayOfPage } from '../add-day-of/add-day-of.page';
-import { AddTreatmentPage } from '../add-treatment/add-treatment.page';
 import { AllTreatmentsPage } from '../all-treatments/all-treatments.page';
 
 import { LoginPage } from '../login/login.page';
