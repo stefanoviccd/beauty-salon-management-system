@@ -28,7 +28,7 @@ const routes: Routes = [
       },
       {
         path: 'treatments',
-        component: TreatmentsPage
+        component: TreatmentsPage,
       },
       {
         path: 'myAppointments',

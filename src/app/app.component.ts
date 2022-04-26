@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from './model/User';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  private user: User;
   constructor() {}
 }

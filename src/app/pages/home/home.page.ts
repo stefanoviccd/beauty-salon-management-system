@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { Role } from 'src/app/model/Role';
+import { User } from 'src/app/model/User';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  private user: User;
 
-  constructor(private router: Router, private dataAuth: AngularFireAuth) { }
+  constructor(private router: Router, private dataAuth: AngularFireAuth) {
+    this.user=new User('dragana', 'dragana', new Role('admin'));
+   }
 
   ngOnInit() {
   }
@@ -17,6 +22,9 @@ export class HomePage implements OnInit {
     this.dataAuth.signOut();
     this.router.navigate(['login']);
 
+  }
+  getUserRole(){
+    return this.user.role.name;
   }
 
 }
