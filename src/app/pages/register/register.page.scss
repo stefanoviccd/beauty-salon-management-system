@@ -10,3 +10,8 @@ ion-toolbar{
 ion-back-button{
   color: black;
 }
+ion-footer ion-toolbar{
+  --background: #ff9999;
+  --color: black;
+  font: italic 1.2em "Fira Sans", serif;
+}
