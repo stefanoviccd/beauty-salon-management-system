@@ -13,7 +13,7 @@ export class HomePage implements OnInit {
   private user: User;
 
   constructor(private router: Router, private dataAuth: AngularFireAuth) {
-    this.user=new User('dragana', 'dragana', new Role('client'));
+    this.user=new User('dragana', 'dragana', new Role('admin'));
    }
 
   ngOnInit() {

@@ -8,6 +8,7 @@ import { TreatmentsPageRoutingModule } from './treatments-routing.module';
 
 import { TreatmentsPage } from './treatments.page';
 import { BrowserModule } from '@angular/platform-browser';
+import { TreatmentService } from 'src/app/services/treatment.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { BrowserModule } from '@angular/platform-browser';
     IonicModule,
     TreatmentsPageRoutingModule
   ],
-  declarations: [TreatmentsPage]
+  declarations: [TreatmentsPage],
+  providers: [TreatmentService]
 })
 export class TreatmentsPageModule {}

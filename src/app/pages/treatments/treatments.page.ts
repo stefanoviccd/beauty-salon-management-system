@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { AlertController } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
+import { TreatmentService } from 'src/app/services/treatment.service';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-treatments',
@@ -9,23 +13,45 @@ import { CommonModule } from '@angular/common';
 })
 export class TreatmentsPage implements OnInit {
   public open: boolean;
+  public name: string;
+  public description: string;
+  public price: string;
+  public allet: any;
 
-  constructor() {
-    this.open=false;
-   }
-
-  ngOnInit() {
+  constructor(
+    private alert: AlertController,
+    private treatmentService: TreatmentService
+  ) {
+    this.open = false;
   }
-  openForm(){
-    this.open=true;
+
+  ngOnInit() {}
+  openForm() {
+    this.open = true;
     console.log('Form opened!');
   }
-  isOpenForm(){
+  isOpenForm() {
     return this.open;
   }
-  closeForm(){
-    this.open=false;
+  async allertAll(header: string, message: string) {
+    this.allet = await this.alert.create({ header, message, buttons: ['ok'] });
+    await this.allet.present();
+  }
+  addTreatment() {
+    const record = {
+      name: this.name,
+      description: this.description,
+      price: this.price,
+    };
+    this.treatmentService.createNewTreatment(record).then(res=>{
+      console.log(res);
+      console.log('data saved');
+    }
+    ).catch(error=>{
+      console.log(error);
+    });
+
+    this.open = false;
     console.log('Form closed!');
   }
-
 }
