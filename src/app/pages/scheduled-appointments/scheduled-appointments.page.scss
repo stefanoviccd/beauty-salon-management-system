@@ -2,8 +2,10 @@ ion-col{
   height: 3rem;
   align-items: center;
 }
+
+
 ion-row:hover{
-  background-color: #fabfbf !important;
+  background-color: var(--ion-color-success) !important;
 }
 ion-grid{
   background-image: url("https://img.freepik.com/free-vector/sakura-flying-downwind-petals-wind-also-includes_270215-18.jpg");

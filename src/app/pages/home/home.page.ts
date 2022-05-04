@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Role } from 'src/app/model/Role';
@@ -11,10 +11,10 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  private user: User;
+  public user: User;
 
-  constructor(private router: Router, private authService: AuthService) {
-    this.user=new User('dragana', 'dragana', new Role('admin'));
+  constructor(private router: Router, private authService: AuthService, private renderer: Renderer2) {
+    this.user=new User('dragana', 'dragana', new Role('client'));
    }
 
   ngOnInit() {
@@ -29,4 +29,13 @@ export class HomePage implements OnInit {
     return this.user.role.name;
   }
 
+  public changeTheme(event){
+   if(event.detail.checked){
+     this.renderer.setAttribute(document.body,'color-theme', 'dark');
+   }
+   else{
+    this.renderer.setAttribute(document.body,'color-theme', 'light');
+   }
+
+}
 }

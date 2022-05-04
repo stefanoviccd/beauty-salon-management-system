@@ -21,24 +21,38 @@
         ><a routerLink="/home/showTreatments">Pogledaj usluge</a></ion-item
       >
       <ion-item (click)="logoutUser()">Odjavi me</ion-item>
+      <ion-item slot="start" lines="full">
+        <ion-icon  name="moon"></ion-icon>
+
+        <ion-toggle (ionChange)="changeTheme($event)" id="themeToggle" slot="end"></ion-toggle>
+      </ion-item>
     </ion-list>
     <ion-list *ngIf="getUserRole()==='admin'">
       <ion-item><a routerLink="/home/scheduledAppointments">Zakazani termini</a></ion-item>
       <ion-item><a routerLink="/home/treatments">Usluge</a></ion-item>
       <ion-item><a routerLink="/home/dayOff">Neradni dani</a></ion-item>
       <ion-item (click)="logoutUser()">Odjavi me</ion-item>
+      <ion-item slot="start" lines="full">
+        <ion-icon  name="moon"></ion-icon>
+
+        <ion-toggle (ionChange)="changeTheme($event)" id="themeToggle" slot="end"></ion-toggle>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
 
 <ion-content>
+
   <div class="ion-page" id="main">
     <ion-content class="ion-padding"> </ion-content>
   </div>
+
 </ion-content>
 <ion-router-outlet></ion-router-outlet>
+
 <ion-footer >
   <ion-toolbar>
     <ion-title  slot="start" >Hope to see you soon..</ion-title>
   </ion-toolbar>
+
 </ion-footer>
