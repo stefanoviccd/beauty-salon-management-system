@@ -5,9 +5,24 @@
 </ion-header>
 
 <ion-content>
+ <!-- <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home/treatments">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Sve usluge</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+
+      <ion-tab-button tab="home/login">
+        <ion-icon name="add-outline"></ion-icon>
+        <ion-label>Dodaj uslugu</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs> -->
   <ion-button color="secondary"(click)="openForm()">Dodaj uslugu</ion-button>
 
 <div *ngIf="isOpenForm()===true" >
+
   <ion-grid style="height: 100%;">
 
       <ion-col size="12" size-sm="10" offset-sm="1" size-md="8" offset-md="2" size-lg="6" offset-xl="3">

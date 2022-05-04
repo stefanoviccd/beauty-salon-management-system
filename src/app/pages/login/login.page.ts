@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginPage implements OnInit {
   user: any;
   allet: any;
 
-  constructor(private route: Router, private auth: AngularFireAuth, private alert: AlertController ){ }
+  constructor(private route: Router, private auth: AngularFireAuth, private alert: AlertController, private authService: AuthService ){ }
 
 
   ngOnInit() {
@@ -32,12 +33,10 @@ export class LoginPage implements OnInit {
     const{ username, password}= this;
     try{
 
-          const user= await this.auth.signInWithEmailAndPassword(username+'@gmail.com', password);
+          //const user= await this.auth.signInWithEmailAndPassword(username+'@gmail.com', password);
       //this.allertAll('Dobrodošli', 'Uspešno ste se prijavili!');
+     const user= this.authService.login(username, password);
       this.route.navigate(['home/myAppointments']);
-
-
-
     }
     catch(error){
       if(this.username==='' || this.password==='' || this.username==null || this.password==null){

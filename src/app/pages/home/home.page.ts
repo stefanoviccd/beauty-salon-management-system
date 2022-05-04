@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Role } from 'src/app/model/Role';
 import { User } from 'src/app/model/User';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,15 +13,16 @@ import { User } from 'src/app/model/User';
 export class HomePage implements OnInit {
   private user: User;
 
-  constructor(private router: Router, private dataAuth: AngularFireAuth) {
+  constructor(private router: Router, private authService: AuthService) {
     this.user=new User('dragana', 'dragana', new Role('admin'));
    }
 
   ngOnInit() {
   }
   logoutUser(){
-    this.dataAuth.signOut();
-    this.router.navigate(['login']);
+   // this.dataAuth.signOut();
+    //this.router.navigate(['login']);
+    this.authService.logout();
 
   }
   getUserRole(){
