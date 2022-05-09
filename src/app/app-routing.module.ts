@@ -63,6 +63,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/manage-treatments/manage-treatments.module').then( m => m.ManageTreatmentsPageModule),
     canLoad: [AuthGuard]
   },
+  {
+    path: 'messages',
+    loadChildren: () => import('./pages/messages/messages.module').then( m => m.MessagesPageModule)
+  },
 
 
 

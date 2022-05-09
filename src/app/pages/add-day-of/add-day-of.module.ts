@@ -7,14 +7,25 @@ import { IonicModule } from '@ionic/angular';
 import { AddDayOfPageRoutingModule } from './add-day-of-routing.module';
 
 import { AddDayOfPage } from './add-day-of.page';
+import {MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddDayOfPageRoutingModule
+    AddDayOfPageRoutingModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   declarations: [AddDayOfPage]
 })
-export class AddDayOfPageModule {}
+export class AddDayOfPageModule {
+
+}

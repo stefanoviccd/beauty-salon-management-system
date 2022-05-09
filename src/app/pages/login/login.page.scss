@@ -10,7 +10,7 @@ ion-card{
   background-size: cover;
 }
 ion-toolbar{
-  --background: #ff9999;
+  --background: var(--ion-color-primary);
   --color: black;
 }
 ion-footer ion-toolbar{

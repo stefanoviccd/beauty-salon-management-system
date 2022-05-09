@@ -21,23 +21,15 @@
                     Izaberite dan
                   </ion-label>
                   <br />
-                  <ion-input type="date"></ion-input>
+
+                    <ion-datetime id="ion-datetime" presentation="date"  first-day-of-week="1" [isDateEnabled]="isDateEnabled" ></ion-datetime>
+
+
+
+
+
 
                 </ion-item>
-                <ion-item style="margin-bottom: 15px;">
-                  <ion-label >
-                    Izaverite termin
-                  </ion-label>
-                  <ion-select>
-                    <ion-select-option value="f">Ceo dan</ion-select-option>
-                    <ion-select-option value="f">08:30</ion-select-option>
-                    <ion-select-option value="f">09:30</ion-select-option>
-                    <ion-select-option value="f">11:00</ion-select-option>
-                    <ion-select-option value="f">12:30</ion-select-option>
-                  </ion-select>
-
-                </ion-item>
-
                 <ion-button color="success" expand="block" >Označi kao neradno</ion-button>
 
 

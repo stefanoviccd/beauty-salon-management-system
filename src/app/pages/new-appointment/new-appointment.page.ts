@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { getDate, getMonth, getYear } from 'date-fns';
+import { isWeekend } from 'date-fns';
 
 @Component({
   selector: 'app-new-appointment',
@@ -11,5 +13,9 @@ export class NewAppointmentPage implements OnInit {
 
   ngOnInit() {
   }
-
+  isDateEnabled = (dateIsoString: string) => {
+    // TODO: da se onemoguce plus jos neradni dani iz baze
+    const date = new Date(dateIsoString);
+    return !isWeekend(date);
+  };
 }

@@ -14,6 +14,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 import { TreatmentTypeService } from './services/treatment-type.service';
 import { CommonModule } from '@angular/common';
+import {MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -22,7 +26,10 @@ import { CommonModule } from '@angular/common';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, CommonModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase),
-  AngularFireAuthModule],
+  AngularFireAuthModule,     MatDatepickerModule,
+  MatNativeDateModule,
+  MatFormFieldModule,
+  MatInputModule ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, TreatmentTypeService],
   bootstrap: [AppComponent],
 })
