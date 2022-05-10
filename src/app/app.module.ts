@@ -18,6 +18,9 @@ import {MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Injectable } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 
@@ -29,6 +32,7 @@ import { MatInputModule } from '@angular/material/input';
   AngularFireAuthModule,     MatDatepickerModule,
   MatNativeDateModule,
   MatFormFieldModule,
+  HttpClientModule,
   MatInputModule ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, TreatmentTypeService],
   bootstrap: [AppComponent],

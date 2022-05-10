@@ -1,0 +1,36 @@
+ion-button {
+  height: 2.2rem;
+  margin-left: 1rem;
+  margin-top: 2rem;
+
+}
+ion-card{
+  background-image: url("https://img.freepik.com/free-vector/sakura-flying-downwind-petals-wind-also-includes_270215-18.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+ion-col{
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  height: 10rem;
+
+  ion-toolbar{
+    --background: var(--ion-color-primary);
+    --color: black;
+
+  }
+}
+.closeModalBtn{
+  float: right;
+  height: 2rem;
+  width: 3rem;
+  border-radius: 3px;
+  background-color: var(--ion-color-secondary);
+  display: inline;
+  position: absolute;
+  top:0.5rem;
+right:1rem;
+
+}

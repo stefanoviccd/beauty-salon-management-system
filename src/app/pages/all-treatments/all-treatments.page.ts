@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TreatmentService } from 'src/app/services/threatmentService/treatment.service';
 
 @Component({
   selector: 'app-all-treatments',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllTreatmentsPage implements OnInit {
 
-  constructor() { }
+  public treatments;
+  constructor(private treatmentService: TreatmentService) { }
 
   ngOnInit() {
+
   }
+
 
 }

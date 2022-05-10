@@ -58,14 +58,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/treatments/treatments.module').then( m => m.TreatmentsPageModule),
     canLoad: [AuthGuard]
   },
-  {
-    path: 'manage-treatments',
-    loadChildren: () => import('./pages/manage-treatments/manage-treatments.module').then( m => m.ManageTreatmentsPageModule),
-    canLoad: [AuthGuard]
-  },
+
   {
     path: 'messages',
     loadChildren: () => import('./pages/messages/messages.module').then( m => m.MessagesPageModule)
+  },
+  {
+    path: 'treatment-modal',
+    loadChildren: () => import('./modals/treatment-modal/treatment-modal.module').then( m => m.TreatmentModalPageModule)
+  },
+  {
+    path: 'add-treatment-modal',
+    loadChildren: () => import('./modals/add-treatment-modal/add-treatment-modal.module').then( m => m.AddTreatmentModalPageModule)
   },
 
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from './model/User';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,5 @@ import { User } from './model/User';
 })
 export class AppComponent {
   private user: User;
-  constructor() {}
+  constructor(private http: HttpClient) {}
 }

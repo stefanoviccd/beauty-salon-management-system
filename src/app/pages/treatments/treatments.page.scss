@@ -33,3 +33,10 @@ ion-grid{
 ion-col:hover{
   opacity: 0.8;
 }
+.unvisible-div{
+  display: none !important;
+  height: 0;
+}
+.visible-div{
+  display: block !important;
+}

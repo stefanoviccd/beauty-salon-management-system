@@ -8,7 +8,8 @@ import { TreatmentsPageRoutingModule } from './treatments-routing.module';
 
 import { TreatmentsPage } from './treatments.page';
 import { BrowserModule } from '@angular/platform-browser';
-import { TreatmentService } from 'src/app/services/treatment.service';
+import { TreatmentService } from 'src/app/services/threatmentService/treatment.service';
+
 
 @NgModule({
   imports: [
