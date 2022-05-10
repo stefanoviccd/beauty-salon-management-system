@@ -28,6 +28,7 @@ export class TreatmentsPage implements OnInit {
       component: AddTreatmentModalPage,
       canDismiss: true,
       cssClass: 'modal',
+      showBackdrop:true,
       componentProps: {
         title: ttl
       }

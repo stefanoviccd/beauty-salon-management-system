@@ -19,6 +19,7 @@ export class ScheduledAppointmentsPage implements OnInit {
       component: TreatmentModalPage,
       canDismiss: true,
       cssClass: 'modal',
+      showBackdrop:true,
       componentProps: {
         value: id
       }
