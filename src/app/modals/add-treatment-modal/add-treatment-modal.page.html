@@ -41,7 +41,8 @@
 
               </ion-item>
 
-              <ion-button color="success" expand="block">Dodaj uslugu</ion-button>
+              <ion-button *ngIf="add" color="success" expand="block">Dodaj uslugu</ion-button>
+              <ion-button *ngIf="change" color="success" expand="block">Izmeni uslugu</ion-button>
 
 
 

@@ -8,6 +8,8 @@ import { ModalController } from '@ionic/angular';
 })
 export class AddTreatmentModalPage implements OnInit {
   public title;
+  public add=true;
+  public change=false;
 
   constructor(private modalController: ModalController) { }
 

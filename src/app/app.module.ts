@@ -12,7 +12,6 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
-import { TreatmentTypeService } from './services/treatment-type.service';
 import { CommonModule } from '@angular/common';
 import {MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -34,7 +33,7 @@ import { Observable } from 'rxjs';
   MatFormFieldModule,
   HttpClientModule,
   MatInputModule ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, TreatmentTypeService],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
