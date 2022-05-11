@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class NonWorkingDayService {
 
   constructor() { }
+  addDayOff(d){
+    console.log(d);
+
+  }
 }

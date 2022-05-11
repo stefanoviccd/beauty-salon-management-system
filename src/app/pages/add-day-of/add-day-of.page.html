@@ -22,15 +22,9 @@
                   </ion-label>
                   <br />
 
-                    <ion-datetime  id="ion-datetime" presentation="date"  first-day-of-week="1" [isDateEnabled]="isDateEnabled" ></ion-datetime>
-
-
-
-
-
-
+                    <ion-datetime #popoverDatetime  id="ion-datetime" presentation="date"  first-day-of-week="1" [isDateEnabled]="isDateEnabled"  (ionChange)="setDayOff(popoverDatetime.value)" ></ion-datetime>
                 </ion-item>
-                <ion-button color="success" expand="block" >Označi kao neradno</ion-button>
+                <ion-button color="success" expand="block" (click)="addDayOff()" >Označi kao neradno</ion-button>
 
 
 

@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { isWeekend } from 'date-fns';
+import { isWeekend, parseISO } from 'date-fns';
+import { NonWorkingDayService } from 'src/app/services/nonWorkingDayService/non-working-day.service';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-add-day-of',
   templateUrl: './add-day-of.page.html',
   styleUrls: ['./add-day-of.page.scss'],
 })
 export class AddDayOfPage implements OnInit {
+  public dayOff;
 
 
 
-  constructor() {
+  constructor(private dayOffService: NonWorkingDayService ) {
   }
 
   ngOnInit() {
@@ -19,6 +23,15 @@ export class AddDayOfPage implements OnInit {
     const date = new Date(dateIsoString);
     return !isWeekend(date);
   };
+
+  setDayOff(value){
+    this.dayOff=value;
+
+  }
+  addDayOff(){
+    this.dayOff = moment(this.dayOff).format('YYYY-MM-DD');
+    this.dayOffService.addDayOff(this.dayOff);
+  }
 
 
 

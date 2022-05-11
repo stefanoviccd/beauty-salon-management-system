@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, IonRouterOutlet, ModalController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { threadId } from 'worker_threads';
 import { AddTreatmentModalPage } from 'src/app/modals/add-treatment-modal/add-treatment-modal.page';
 import { TreatmentService } from 'src/app/services/threatmentService/treatment.service';
+import { Treatment } from 'src/app/model/Treatment';
 
 @Component({
   selector: 'app-treatments',
@@ -13,6 +13,7 @@ import { TreatmentService } from 'src/app/services/threatmentService/treatment.s
 export class TreatmentsPage implements OnInit {
   public allet: any;
   public treatments;
+  public newTreatment: Treatment;
 
   constructor(
     private alert: AlertController,
@@ -21,16 +22,19 @@ export class TreatmentsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getTreatments();
+    this.treatments=this.getTreatments();
+    this.newTreatment=new Treatment('','',null);
   }
-  async showModal(ttl) {
+  async showModal() {
     const modal = await this.modalController.create({
       component: AddTreatmentModalPage,
       canDismiss: true,
       cssClass: 'modal',
       showBackdrop:true,
       componentProps: {
-        title: ttl
+        title: 'Nova usluga',
+        treatment: this.newTreatment
+
       }
 
     });
@@ -42,8 +46,42 @@ export class TreatmentsPage implements OnInit {
   }
 
   getTreatments() {
- this.treatments = this.treatmentService.getAllTreatments();
-    console.log('TREATMENTS');
-    console.log(this.treatments);
+   /* console.log('RESULT');
+this.treatmentService.getAllTreatments()
+.subscribe(
+  result => {
+    console.log('RESULT');
+      console.log(result);
+  },
+  error => {
+      console.log('Error occured', error);
+  }
+);;*/
+return this.treatmentService.getAllTreatments();
+  }
+  deleteTreatment(t: Treatment){
+    this.treatmentService.deleteTreatment(t);
+    this.treatments=this.getTreatments();
+
+  }
+
+  async openInfoModal(t: Treatment){
+    const modal = await this.modalController.create({
+      component: AddTreatmentModalPage,
+      canDismiss: true,
+      cssClass: 'modal',
+      showBackdrop:true,
+      componentProps: {
+        title: 'Informacije o usluzi',
+        treatment: t,
+        add: false,
+        change: true
+
+      }
+
+    });
+    await modal.present();
+
+
   }
 }
