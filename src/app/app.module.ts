@@ -16,6 +16,7 @@ import { Injectable } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TreatmentsPageModule } from './pages/treatments/treatments.module';
+import { ScheduledAppointmentsPageModule } from './pages/scheduled-appointments/scheduled-appointments.module';
 
 
 
@@ -28,7 +29,8 @@ import { TreatmentsPageModule } from './pages/treatments/treatments.module';
   MatNativeDateModule,
   MatFormFieldModule,
   HttpClientModule,
-  MatInputModule, TreatmentsPageModule ],
+  MatInputModule, TreatmentsPageModule,
+  ScheduledAppointmentsPageModule ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

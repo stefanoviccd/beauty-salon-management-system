@@ -30,7 +30,8 @@ export class AddDayOfPage implements OnInit {
   }
   addDayOff(){
     this.dayOff = moment(this.dayOff).format('YYYY-MM-DD');
-    this.dayOffService.addDayOff(this.dayOff);
+    const date=new Date(this.dayOff);
+    this.dayOffService.addDayOff(date);
   }
 
 

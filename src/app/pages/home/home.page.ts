@@ -14,7 +14,7 @@ export class HomePage implements OnInit {
   public user: User;
 
   constructor(private router: Router, private authService: AuthService, private renderer: Renderer2) {
-    this.user=new User('dragana', 'dragana', new Role('admin'));
+    this.user=new User('dragana', 'dragana','','','', new Role('admin'));
    }
 
   ngOnInit() {

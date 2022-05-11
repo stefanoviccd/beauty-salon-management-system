@@ -22,7 +22,7 @@
               Ime i prezime
             </ion-label>
             <br />
-            <ion-input >ime i prezime</ion-input>
+            <ion-input readonly="true">{{appointment.user.name}} {{appointment.user.lastName}}</ion-input>
 
           </ion-item>
           <ion-item>
@@ -30,7 +30,7 @@
               Datum
             </ion-label>
             <br />
-            <ion-input >datum</ion-input>
+            <ion-input readonly="true">{{appointment.date}}</ion-input>
 
           </ion-item>
           <ion-item>
@@ -38,19 +38,19 @@
               Vreme
             </ion-label>
             <br />
-            <ion-input >vreme</ion-input>
+            <ion-input readonly="true" >{{appointment.time}}</ion-input>
 
           </ion-item>
           <ion-item style="margin-bottom: 15px;">
             <ion-label position="fixed" >
               Tretman
             </ion-label>
-            <ion-input type="text" >tretman</ion-input>
+            <ion-input readonly="true" type="text" >{{appointment.treatment.name}}</ion-input>
 
           </ion-item>
 
-          <ion-button color="success" expand="block">Potvrdi</ion-button>
-          <ion-button color="light" expand="block">Odbaci</ion-button>
+          <ion-button color="success" expand="block" (click)="scheduleAppointment()">Potvrdi</ion-button>
+          <ion-button color="light" expand="block" (click)="deleteAppointment()">Odbaci</ion-button>
 
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AppointmentService } from 'src/app/services/appointmentService/appointment.service';
 
 @Component({
   selector: 'app-treatment-modal',
@@ -7,13 +8,24 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./treatment-modal.page.scss'],
 })
 export class TreatmentModalPage implements OnInit {
-
-  constructor(private modalController: ModalController) { }
+public appointment;
+  constructor(private modalController: ModalController, private appointmentService: AppointmentService) { }
 
   ngOnInit() {
   }
   closeModal() {
     this.modalController.dismiss();
+}
+deleteAppointment(){
+  console.log('Trying to delete..');
+  this.appointmentService.delete(this.appointment);
+  this.closeModal();
+}
+scheduleAppointment(){
+  console.log('Trying to schedule..');
+  this.appointmentService.schedule(this.appointment);
+  this.closeModal();
+
 }
 
 }
