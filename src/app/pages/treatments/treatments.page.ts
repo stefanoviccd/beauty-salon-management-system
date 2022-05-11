@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { AddTreatmentModalPage } from 'src/app/modals/add-treatment-modal/add-treatment-modal.page';
 import { TreatmentService } from 'src/app/services/threatmentService/treatment.service';
 import { Treatment } from 'src/app/model/Treatment';
+import { AuthService } from 'src/app/services/authService/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-treatments',
@@ -22,7 +24,9 @@ export class TreatmentsPage implements OnInit {
   constructor(
     private alert: AlertController,
     private treatmentService: TreatmentService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -77,5 +81,11 @@ export class TreatmentsPage implements OnInit {
       },
     });
     await modal.present();
+  }
+  getUserRole(){
+return this.authService.getUserRole();
+  }
+  scheduleSpecificTreatment(t: Treatment){
+    this.router.navigate(['home/newAppointment']);
   }
 }

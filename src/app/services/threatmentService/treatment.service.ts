@@ -20,16 +20,17 @@ export class TreatmentService {
     return this.http.get<Treatment[]>(`${this.url}`);
   }
 
+
   addTreatment(t: Treatment) {
     const body= JSON.parse(JSON.stringify(t));
 
     this.http.post(this.url, body).subscribe(
       data => {
-      alert("Success Adding");
+      alert('Success Adding');
       location.reload();
     },
     error => {
-      alert("Error Adding");
+      alert('Error Adding');
       console.log(error);
     });
   }
@@ -37,14 +38,14 @@ export class TreatmentService {
 
   deleteTreatment(t: Treatment) {
     this.http
-      .delete(this.url + "/" + t.id)
+      .delete(this.url + '/' + t.id)
       .subscribe(
         data => {
-        alert("Success deleting");
+        alert('Success deleting');
         location.reload();
       },
       error => {
-        alert("Error deleting");
+        alert('Error deleting');
         console.log(error);
       });
   }
@@ -54,12 +55,33 @@ export class TreatmentService {
 
     this.http.put(this.url, body).subscribe(
       data => {
-      alert("Success updating");
+      alert('Success updating');
       location.reload();
     },
     error => {
-      alert("Error updating");
+      alert('Error updating');
       console.log(error);
     });
   }
+ getByName(n: string){
+    let targetTreatment;
+    let  treatments;
+    this.getAllTreatments().subscribe(  data => {
+      treatments=data;
+    },
+    error => {
+      console.log(error);
+    });
+    treatments.forEach(element => {
+      if(element.name===n){
+      targetTreatment= element;
+      }
+    });
+    if(targetTreatment==null){
+      console.log('Nije pronadjen tretman');
+    }
+    return targetTreatment;
+  }
+
+
 }

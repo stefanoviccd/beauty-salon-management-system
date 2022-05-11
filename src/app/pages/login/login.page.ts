@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertController } from '@ionic/angular';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +36,9 @@ export class LoginPage implements OnInit {
           //const user= await this.auth.signInWithEmailAndPassword(username+'@gmail.com', password);
       //this.allertAll('Dobrodošli', 'Uspešno ste se prijavili!');
      const user= this.authService.login(username, password);
-      this.route.navigate(['home/myAppointments']);
+     if((await user).role.name==='client'){ this.route.navigate(['home/myAppointments']);}
+     else{ this.route.navigate(['home/scheduledAppointments']);}
+
     }
     catch(error){
       if(this.username==='' || this.password==='' || this.username==null || this.password==null){

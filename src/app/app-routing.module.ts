@@ -42,11 +42,7 @@ const routes: Routes = [
     loadChildren: ()=> import('./pages/scheduled-appointments/scheduled-appointments.module').then( m => m.ScheduledAppointmentsPageModule),
     canLoad: [AuthGuard]
   },
-  {
-    path: 'all-treatments',
-    loadChildren: () => import('./pages/all-treatments/all-treatments.module').then( m => m.AllTreatmentsPageModule),
-    canLoad: [AuthGuard]
-  },
+
   {
     path: 'add-day-of',
     loadChildren: () => import('./pages/add-day-of/add-day-of.module').then( m => m.AddDayOfPageModule),
