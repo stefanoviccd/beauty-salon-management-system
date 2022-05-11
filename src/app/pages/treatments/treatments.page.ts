@@ -29,7 +29,7 @@ export class TreatmentsPage implements OnInit {
     this.getTreatments();
     this.newTreatment = new Treatment('', '', null, 0);
   }
-  
+
   async showModal() {
     const modal = await this.modalController.create({
       component: AddTreatmentModalPage,
@@ -61,7 +61,6 @@ export class TreatmentsPage implements OnInit {
 
   deleteTreatment(t: Treatment) {
     this.treatmentService.deleteTreatment(t);
-    //this.treatments=this.getTreatments();
   }
 
   async openInfoModal(t: Treatment) {
