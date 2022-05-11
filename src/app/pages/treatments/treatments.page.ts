@@ -65,7 +65,6 @@ export class TreatmentsPage implements OnInit {
 
   deleteTreatment(t: Treatment) {
     this.treatmentService.deleteTreatment(t);
-    //this.treatments=this.getTreatments();
   }
 
   async openInfoModal(t: Treatment) {
