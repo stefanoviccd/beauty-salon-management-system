@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from './model/User';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
