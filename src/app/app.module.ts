@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TreatmentsPageModule } from './pages/treatments/treatments.module';
 import { ScheduledAppointmentsPageModule } from './pages/scheduled-appointments/scheduled-appointments.module';
+import { MyAppointmentsPageModule } from './pages/my-appointments/my-appointments.module';
+import { NewAppointmentPageModule } from './pages/new-appointment/new-appointment.module';
 
 
 
@@ -30,7 +32,7 @@ import { ScheduledAppointmentsPageModule } from './pages/scheduled-appointments/
   MatFormFieldModule,
   HttpClientModule,
   MatInputModule, TreatmentsPageModule,
-  ScheduledAppointmentsPageModule ],
+  ScheduledAppointmentsPageModule, MyAppointmentsPageModule, NewAppointmentPageModule ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

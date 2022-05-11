@@ -10,6 +10,7 @@ import { Treatment } from 'src/app/model/Treatment';
 export class TreatmentService {
   url = 'http://localhost:7018/api/Treatment';
   treatments;
+  targetTreatment: Treatment;
 
   constructor(private http: HttpClient) { }
 
@@ -43,5 +44,24 @@ export class TreatmentService {
     console.log('Treatment updated');
     console.log(t);
 
+  }
+  getByName(n: string){
+    let targetTreatment;
+    this.treatments.forEach(element => {
+      if(element.name===n){
+      targetTreatment= element;
+      }
+    });
+    if(targetTreatment==null){
+      console.log('Nije pronadjen tretman');
+    }
+    return targetTreatment;
+  }
+
+  setTargetTreatment(e: Treatment){
+    this.targetTreatment=e;
+  }
+  getTargetTreatment(){
+    return this.targetTreatment;
   }
 }

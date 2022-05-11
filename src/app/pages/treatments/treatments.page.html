@@ -5,13 +5,14 @@
 </ion-header>
 
 <ion-content >
-  <ion-button color="tertiary"(click)="showModal()">Dodaj uslugu</ion-button>
+  <ion-button *ngIf="getUserRole().name==='admin'" color="tertiary"(click)="showModal()">Dodaj uslugu</ion-button>
 <ion-grid  (onInit)="getTreatments()">
   <ion-row *ngFor="let t of treatments; index as i" >
     <ion-col size="12">
       <b>{{t.name}}</b><br>{{t.description}}<br>Cena usluge je <b>{{t.price}}</b> dinara.<br>
-      <ion-button color="secondary" (click)="deleteTreatment(t)">Obriši</ion-button>
-      <ion-button color="warning" (click)="openInfoModal(t)">Izmeni</ion-button>
+      <ion-button *ngIf="getUserRole().name==='admin'" color="secondary" (click)="deleteTreatment(t)">Obriši</ion-button>
+      <ion-button *ngIf="getUserRole().name==='admin'" color="warning" (click)="openInfoModal(t)">Izmeni</ion-button>
+      <ion-button *ngIf="getUserRole().name==='client'" color="warning"  (click)="scheduleSpecificTreatment(t)">Zakaži</ion-button>
     </ion-col>
 
   </ion-row>

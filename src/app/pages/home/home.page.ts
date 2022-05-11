@@ -3,7 +3,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Role } from 'src/app/model/Role';
 import { User } from 'src/app/model/User';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/authService/auth.service';
+
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomePage implements OnInit {
   public user: User;
 
   constructor(private router: Router, private authService: AuthService, private renderer: Renderer2) {
-    this.user=new User('dragana', 'dragana','','','', new Role('admin'));
+    this.user=new User('dragana', 'dragana','','','', new Role('client'));
    }
 
   ngOnInit() {
@@ -26,7 +27,7 @@ export class HomePage implements OnInit {
 
   }
   getUserRole(){
-    return this.user.role.name;
+    return this.authService.getUserRole().name;
   }
 
   public changeTheme(event){

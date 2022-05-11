@@ -20,16 +20,16 @@
                 <ion-label >
                   Izaberite uslugu
                 </ion-label>
-                  <ion-select>
-                  <ion-select-option value="f">Manikir</ion-select-option>
-                  <ion-select-option value="m">Pedikir</ion-select-option>
+                  <ion-select  ngDefaultControl>
+                  <ion-select-option  *ngFor="let e of allTreatments; index as i" value={{e.name}} >{{e.name}}</ion-select-option>
+
                 </ion-select>
                 <br />
               </ion-item>
 
               <ion-item style="margin-bottom: 15px;">
 
-                <ion-datetime id="ion-datetime" presentation="date" first-day-of-week="1" [isDateEnabled]="isDateEnabled" ></ion-datetime>
+                <ion-datetime #popoverDatetime id="ion-datetime" presentation="date" first-day-of-week="1" [isDateEnabled]="isDateEnabled" (ionChange)="setDate(popoverDatetime.value)"></ion-datetime>
 
 
 
@@ -40,18 +40,18 @@
                 <ion-label>
                   Izaberite Vreme
                 </ion-label>
-                <ion-select>
-                  <ion-select-option value="f">08:30</ion-select-option>
-                  <ion-select-option value="f">09:30</ion-select-option>
-                  <ion-select-option value="f">11:00</ion-select-option>
-                  <ion-select-option value="f">12:30</ion-select-option>
+                <ion-select [(ngModel)]="time" ngDefaultControl>
+                  <ion-select-option value="08:30">08:30</ion-select-option>
+                  <ion-select-option value="09:30">09:30</ion-select-option>
+                  <ion-select-option value="11:00">11:00</ion-select-option>
+                  <ion-select-option value="12:30">12:30</ion-select-option>
                 </ion-select>
 
 
 
               </ion-item>
 
-              <ion-button color="success" expand="block" >Zakaži</ion-button>
+              <ion-button color="success" expand="block" (click)="requestForAppointment()" >Zakaži</ion-button>
 
 
 
