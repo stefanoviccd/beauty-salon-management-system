@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, IonRouterOutlet, ModalController } from '@ionic/angular';
+import {
+  AlertController,
+  IonRouterOutlet,
+  ModalController,
+} from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { AddTreatmentModalPage } from 'src/app/modals/add-treatment-modal/add-treatment-modal.page';
 import { TreatmentService } from 'src/app/services/threatmentService/treatment.service';
@@ -12,31 +16,30 @@ import { Treatment } from 'src/app/model/Treatment';
 })
 export class TreatmentsPage implements OnInit {
   public allet: any;
-  public treatments;
+  public treatments: Treatment[] = [];
   public newTreatment: Treatment;
 
   constructor(
     private alert: AlertController,
     private treatmentService: TreatmentService,
-    private modalController: ModalController,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
-    this.treatments=this.getTreatments();
-    this.newTreatment=new Treatment('','',null);
+    this.getTreatments();
+    this.newTreatment = new Treatment('', '', null, 0);
   }
+  
   async showModal() {
     const modal = await this.modalController.create({
       component: AddTreatmentModalPage,
       canDismiss: true,
       cssClass: 'modal',
-      showBackdrop:true,
+      showBackdrop: true,
       componentProps: {
         title: 'Nova usluga',
-        treatment: this.newTreatment
-
-      }
-
+        treatment: this.newTreatment,
+      },
     });
     await modal.present();
   }
@@ -46,42 +49,34 @@ export class TreatmentsPage implements OnInit {
   }
 
   getTreatments() {
-   /* console.log('RESULT');
-this.treatmentService.getAllTreatments()
-.subscribe(
-  result => {
-    console.log('RESULT');
-      console.log(result);
-  },
-  error => {
-      console.log('Error occured', error);
+    this.treatmentService.getAllTreatments().subscribe(
+      (result) => {
+        this.treatments = result;
+      },
+      (error) => {
+        console.log('Error occured', error);
+      }
+    );
   }
-);;*/
-return this.treatmentService.getAllTreatments();
-  }
-  deleteTreatment(t: Treatment){
+
+  deleteTreatment(t: Treatment) {
     this.treatmentService.deleteTreatment(t);
-    this.treatments=this.getTreatments();
-
+    //this.treatments=this.getTreatments();
   }
 
-  async openInfoModal(t: Treatment){
+  async openInfoModal(t: Treatment) {
     const modal = await this.modalController.create({
       component: AddTreatmentModalPage,
       canDismiss: true,
       cssClass: 'modal',
-      showBackdrop:true,
+      showBackdrop: true,
       componentProps: {
         title: 'Informacije o usluzi',
         treatment: t,
         add: false,
-        change: true
-
-      }
-
+        change: true,
+      },
     });
     await modal.present();
-
-
   }
 }
