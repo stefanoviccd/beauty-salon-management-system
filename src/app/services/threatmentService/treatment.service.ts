@@ -1,53 +1,78 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HttpClient,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Treatment } from 'src/app/model/Treatment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TreatmentService {
-  url = 'http://localhost:7018/api/Treatment';
-  treatments;
-  targetTreatment: Treatment;
+  url = 'https://localhost:7018/api/Treatment';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getAllTreatments(){
-   /* return this.http.get<Treatment>(`${this.url}`, {responseType: 'json', observe: 'response' });
-    const httpOptions = {
-      headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Access-Control-Allow-Origin': '*'
-      })
-    };
-    return this.http.get(`${this.url}`, httpOptions);*/
-    const t1=new Treatment('Manikir', 'Usluga manikira', 1200);
-    const t2=new Treatment('Pedikir', 'Usluga pedikira', 1000);
-    this.treatments=[t1,t2];
-    return this.treatments;
-
-
+  getAllTreatments() {
+    return this.http.get<Treatment[]>(`${this.url}`);
   }
 
-  addTreatment(t: Treatment){
-    this.treatments.push(t);
 
+  addTreatment(t: Treatment) {
+    const body= JSON.parse(JSON.stringify(t));
 
+    this.http.post(this.url, body).subscribe(
+      data => {
+      alert('Success Adding');
+      location.reload();
+    },
+    error => {
+      alert('Error Adding');
+      console.log(error);
+    });
   }
-  deleteTreatment(t: Treatment){
-   console.log('Treatment deleted');
+
+
+  deleteTreatment(t: Treatment) {
+    this.http
+      .delete(this.url + '/' + t.id)
+      .subscribe(
+        data => {
+        alert('Success deleting');
+        location.reload();
+      },
+      error => {
+        alert('Error deleting');
+        console.log(error);
+      });
   }
 
-  updateTreatment(t: Treatment){
-    console.log('Treatment updated');
-    console.log(t);
+  updateTreatment(t: Treatment) {
+    const body= JSON.parse(JSON.stringify(t));
 
+    this.http.put(this.url, body).subscribe(
+      data => {
+      alert('Success updating');
+      location.reload();
+    },
+    error => {
+      alert('Error updating');
+      console.log(error);
+    });
   }
-  getByName(n: string){
+ getByName(n: string){
     let targetTreatment;
-    this.treatments.forEach(element => {
+    let  treatments;
+    this.getAllTreatments().subscribe(  data => {
+      treatments=data;
+    },
+    error => {
+      console.log(error);
+    });
+    treatments.forEach(element => {
       if(element.name===n){
       targetTreatment= element;
       }
@@ -58,10 +83,5 @@ export class TreatmentService {
     return targetTreatment;
   }
 
-  setTargetTreatment(e: Treatment){
-    this.targetTreatment=e;
-  }
-  getTargetTreatment(){
-    return this.targetTreatment;
-  }
+
 }

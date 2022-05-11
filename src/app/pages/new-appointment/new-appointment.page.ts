@@ -24,7 +24,7 @@ export class NewAppointmentPage implements OnInit {
     this.allTreatments=treatmentService.getAllTreatments();
   }
   ngOnInit() {
-this.selectedTreatment=this.treatmentService.getTargetTreatment();
+
   }
   isDateEnabled = (dateIsoString: string) => {
     // TODO: da se onemoguce plus jos neradni dani iz baze
@@ -33,8 +33,8 @@ this.selectedTreatment=this.treatmentService.getTargetTreatment();
   };
   requestForAppointment(){
     console.log(this.targetTreatment);
-    const treatment=this.treatmentService.getByName(this.targetTreatment);
-    const e=new Appointment(this.auth.getLoggedInUser(), this.date, this.time, treatment, 'zahtevan');
+    //const treatment=this.treatmentService.getByName(this.targetTreatment);
+    const e=new Appointment(this.auth.getLoggedInUser(), this.date, this.time, null, 'zahtevan');
     this.appointmentService.addAppointment(e);
     console.log(e);
     this.router.navigate(['/home/myAppointments']);

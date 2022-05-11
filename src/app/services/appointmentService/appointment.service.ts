@@ -14,10 +14,10 @@ export class AppointmentService {
   public appointments;
   constructor() {
     const u=new User('dragana','dragana', 'Dragana','Stefanovic','0876655554', new Role('client'));
-    const t=new Treatment('Manikir', '',1200);
+    const t=new Treatment('Manikir', '',1200,1);
     const a1=new Appointment(u,new Date(), '12.30',t, 'zakazan');
     const u2=new User('aleksandra','aleksandra', 'Ana','Furtula','0876655554', new Role('client'));
-    const t2=new Treatment('Pedikir', '',1200);
+    const t2=new Treatment('Pedikir', '',1200,2);
     const a2=new Appointment(u2,new Date(), '12.00',t2, 'zahtevan');
     this.appointments=[a1,a2];
     this.appointments.forEach(e=>{
