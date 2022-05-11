@@ -33,7 +33,7 @@ export class NewAppointmentPage implements OnInit {
   };
   requestForAppointment(){
     console.log(this.targetTreatment);
-    //const treatment=this.treatmentService.getByName(this.targetTreatment);
+    const treatment=this.treatmentService.getByName(this.targetTreatment);
     const e=new Appointment(this.auth.getLoggedInUser(), this.date, this.time, null, 'zahtevan');
     this.appointmentService.addAppointment(e);
     console.log(e);

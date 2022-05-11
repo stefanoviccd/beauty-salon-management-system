@@ -24,7 +24,7 @@ const routes: Routes = [
     path: 'home',
     component: HomePage,
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    //canLoad: [AuthGuard]
+    canLoad: [AuthGuard]
   },
   {
     path: 'new-appointment',

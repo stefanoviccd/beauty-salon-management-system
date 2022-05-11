@@ -17,8 +17,8 @@ export class AuthService {
     const u1=new User('dragana', 'dragana','Dragana', 'Stefanovic', '0876655443', new Role('client'));
     const u2=new User('admin', 'admin','Admin', 'Admin', '0876655443', new Role('admin'));
     this.users=[u1,u2];
-    this.loggedIn=JSON.parse(window.localStorage.isLoggedIn);
-    this.loggedInUser=JSON.parse(window.localStorage.loggedInUser);
+    //this.loggedIn=JSON.parse(window.localStorage.isLoggedIn);
+    //this.loggedInUser=JSON.parse(window.localStorage.loggedInUser);
 
 
    }
@@ -37,8 +37,8 @@ export class AuthService {
       this.loggedIn=true;
     this.loggedInUser=u;}
     });
-    window.localStorage.loggedInUser = JSON.stringify(this.loggedInUser);
-    window.localStorage.isLoggedIn = JSON.stringify(true);
+   // window.localStorage.loggedInUser = JSON.stringify(this.loggedInUser);
+   // window.localStorage.isLoggedIn = JSON.stringify(true);
 
     return this.loggedInUser;
   }
@@ -46,8 +46,8 @@ export class AuthService {
     this.loggedIn=false;
     this.loggedInUser=null;
     this.route.navigate(['login']);
-    window.localStorage.loggedInUser = JSON.stringify(this.loggedInUser);
-    window.localStorage.isLoggedIn = JSON.stringify(false);
+  //  window.localStorage.loggedInUser = JSON.stringify(this.loggedInUser);
+    //window.localStorage.isLoggedIn = JSON.stringify(false);
 
   }
   getUserRole(){
