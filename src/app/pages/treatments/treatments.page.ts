@@ -31,7 +31,7 @@ export class TreatmentsPage implements OnInit {
 
   ngOnInit() {
     this.getTreatments();
-    this.newTreatment = new Treatment('', '', null, 0);
+    this.newTreatment = new Treatment("","",0,0);
   }
 
   parseDate(date: Date){
@@ -47,10 +47,12 @@ export class TreatmentsPage implements OnInit {
       componentProps: {
         title: 'Nova usluga',
         treatment: this.newTreatment,
+        treatmentsPage: this
       },
     });
     await modal.present();
   }
+  
   async allertAll(header: string, message: string) {
     this.allet = await this.alert.create({ header, message, buttons: ['ok'] });
     await this.allet.present();
@@ -68,7 +70,14 @@ export class TreatmentsPage implements OnInit {
   }
 
   deleteTreatment(t: Treatment) {
-    this.treatmentService.deleteTreatment(t);
+    this.treatmentService.deleteTreatment(t).subscribe(
+    data => {
+      this.ngOnInit();
+    },
+    error => {
+      alert('Error occured');
+      console.log(error);
+    });
   }
 
   async openInfoModal(t: Treatment) {
@@ -82,13 +91,16 @@ export class TreatmentsPage implements OnInit {
         treatment: t,
         add: false,
         change: true,
+        treatmentsPage: this
       },
     });
     await modal.present();
   }
+
   getUserRole(){
 return this.authService.getUserRole();
   }
+
   scheduleSpecificTreatment(t: Treatment){
     this.router.navigate(['home/newAppointment']);
   }

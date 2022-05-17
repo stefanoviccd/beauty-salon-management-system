@@ -20,8 +20,8 @@
                 <ion-label >
                   Izaberite uslugu
                 </ion-label>
-                  <ion-select  ngDefaultControl>
-                  <ion-select-option  *ngFor="let e of allTreatments; index as i" value={{e.name}} >{{e.name}}</ion-select-option>
+                  <ion-select [(ngModel)]="targetTreatment">
+                  <ion-select-option  *ngFor="let e of allTreatments; index as i" value={{e.id}} >{{e.name}}</ion-select-option>
 
                 </ion-select>
                 <br />
@@ -40,21 +40,17 @@
                 <ion-label>
                   Izaberite Vreme
                 </ion-label>
-                <ion-select [(ngModel)]="time" ngDefaultControl>
-                  <ion-select-option value="08:30">08:30</ion-select-option>
-                  <ion-select-option value="09:30">09:30</ion-select-option>
-                  <ion-select-option value="11:00">11:00</ion-select-option>
-                  <ion-select-option value="12:30">12:30</ion-select-option>
-                </ion-select>
 
-
+                  <ion-select [(ngModel)]="time" [disabled]="isTimeDisabled()">
+                    <ion-select-option value="8:30">08:30</ion-select-option>
+                    <ion-select-option value="9:30">09:30</ion-select-option>
+                    <ion-select-option value="11:00">11:00</ion-select-option>
+                    <ion-select-option value="12:30">12:30</ion-select-option>
+                  </ion-select>
 
               </ion-item>
 
-              <ion-button color="success" expand="block" (click)="requestForAppointment()" >Zakaži</ion-button>
-
-
-
+              <ion-button color="success" expand="block" (click)="requestForAppointment()" [disabled]="isButtonDisabled()">Zakaži</ion-button>
 
             </ion-card-content>
 

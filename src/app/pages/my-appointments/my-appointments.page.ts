@@ -25,7 +25,6 @@ export class MyAppointmentsPage implements OnInit {
     this.appointmentService.getUserAppointments(u).subscribe(
       (result) => {
         this.appointments = result;
-        console.log(this.appointments);
       },
       (error) => {
         console.log('Error occured', error);
@@ -34,7 +33,14 @@ export class MyAppointmentsPage implements OnInit {
   }
   
   deleteAppointment(e: Appointment){
-    this.appointmentService.delete(e);
+    this.appointmentService.delete(e).subscribe(
+      (result) => {
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log('Error occured', error);
+      }
+    );
   }
 
 }

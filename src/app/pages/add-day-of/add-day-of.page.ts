@@ -14,8 +14,7 @@ export class AddDayOfPage implements OnInit {
   public datesModels: DateOff[] = [];
   public daysOff: Date[] = [];
 
-  constructor(private dayOffService: NonWorkingDayService ) {
-  }
+  constructor(private dayOffService: NonWorkingDayService) {}
 
   ngOnInit() {
     this.getDaysOff();
@@ -23,41 +22,53 @@ export class AddDayOfPage implements OnInit {
 
   isDateBeforeToday(date) {
     return new Date(date.toDateString()) < new Date(new Date().toDateString());
-  } 
+  }
 
-
- isDateEnabled = (dateIsoString: string) => {
+  isDateEnabled = (dateIsoString: string) => {
     const date = new Date(dateIsoString);
 
-    if(this.isDateBeforeToday(date)){
+    if (this.isDateBeforeToday(date)) {
       return false;
     }
 
-    for(let i=0; i<this.daysOff.length; i++){
-      if(this.daysOff[i].getUTCMonth() == date.getUTCMonth() && this.daysOff[i].getDate() == date.getDate() && this.daysOff[i].getFullYear()==date.getFullYear()){
+    for (let i = 0; i < this.daysOff.length; i++) {
+      if (
+        this.daysOff[i].getUTCMonth() == date.getUTCMonth() &&
+        this.daysOff[i].getDate() == date.getDate() &&
+        this.daysOff[i].getFullYear() == date.getFullYear()
+      ) {
         return false;
       }
     }
-   
+
     return !isWeekend(date);
   };
 
-  setDayOff(value){
-    this.dayOff=value;
-
+  setDayOff(value) {
+    this.dayOff = value;
   }
-  addDayOff(){
+
+  addDayOff() {
     this.dayOff = moment(this.dayOff).format('YYYY-MM-DD');
-    const date=new Date(this.dayOff);
-    this.dayOffService.addDayOff(date);
+    const date = new Date(this.dayOff);
+    this.dayOffService.addDayOff(date).subscribe(
+      (data) => {
+        this.ngOnInit();
+      },
+      (error) => {
+        alert('Error...');
+      }
+    );
   }
 
-  getDaysOff(){
+  getDaysOff() {
     this.dayOffService.getDaysOff().subscribe(
       (result) => {
         this.datesModels = result;
-        this.datesModels.forEach(element => {
-          this.daysOff.push(new Date(element['year'], element['month']-1, element['day']));
+        this.datesModels.forEach((element) => {
+          this.daysOff.push(
+            new Date(element['year'], element['month'] - 1, element['day'])
+          );
         });
       },
       (error) => {
@@ -65,11 +76,4 @@ export class AddDayOfPage implements OnInit {
       }
     );
   }
-
-
-
-
 }
-
-
-

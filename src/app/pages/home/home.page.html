@@ -20,7 +20,7 @@
       <ion-item
         ><a routerLink="/home/showTreatments">Pogledaj usluge</a></ion-item
       >
-      <ion-item><a routerLink="/home/messages">Obaveštenja <ion-badge>0</ion-badge></a></ion-item
+      <ion-item><a routerLink="/home/messages">Obaveštenja <ion-badge>{{unreadCount}}</ion-badge></a></ion-item
         >
       <ion-item (click)="logoutUser()">Odjavi me</ion-item>
       <ion-item slot="start" lines="full">

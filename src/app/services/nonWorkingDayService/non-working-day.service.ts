@@ -24,13 +24,7 @@ export class NonWorkingDayService {
    
     const body= JSON.parse(JSON.stringify(data));
 
-    this.http.post(this.url, body).subscribe(
-      data => {
-      alert("Success Adding");
-    },
-    error => {
-      alert("Error Adding");
-    });
+    return this.http.post(this.url, body);
 
   }
 

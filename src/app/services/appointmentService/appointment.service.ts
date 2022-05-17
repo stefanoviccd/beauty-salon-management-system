@@ -38,56 +38,47 @@ export class AppointmentService {
 
 
   delete(e: Appointment){
-    this.http
-      .delete(this.url + '/' + e.id)
-      .subscribe(
-        data => {
-        alert('Success deleting');
-        location.reload();
-      },
-      error => {
-        alert('Error deleting');
-        console.log(error);
-      });
+    return this.http.delete(this.url + '/' + e.id);
   }
 
   reject(e: Appointment){
-    this.http
-      .put(this.url + '/reject', e.id)
-      .subscribe(
-        data => {
-        alert('Success rejecting');
-        location.reload();
-      },
-      error => {
-        alert('Error rejecting');
-        console.log(error);
-      });
+    return this.http.put(this.url + '/reject', e.id);
   }
 
   schedule(e: Appointment){
-    this.http
-    .put(this.url + '/accept', e.id)
-    .subscribe(
-      data => {
-      alert('Success scheduling');
-      location.reload();
-    },
-    error => {
-      alert('Error scheduling');
-      console.log(error);
-    });
+    return this.http.put(this.url + '/accept', e.id);
   }
-
-  
 
   getUserAppointments(u: User){
     return this.http.get<Appointment[]>(`${this.url + "/" + u.username}`);
   }
 
-  addAppointment(e: Appointment){
-    this.appointments.push(e);
-    console.log(this.appointments);
+  addAppointment(treatmentId: number, username: string, day: number, month: number, year: number, hour: number, minute:number){
+    const body= JSON.parse(JSON.stringify({
+      Email: username,
+      TreatmentId: treatmentId,
+      Day: day,
+      Month: month,
+      Year: year,
+      Hour: hour,
+      Minute: minute
+    }));
+
+    return this.http.post(this.url, body);
+  
   }
+
+  isTimeAvailable(day: number, month: number, year: number, hour: number, minute:number){
+    const body= JSON.parse(JSON.stringify({
+      Day: day,
+      Month: month,
+      Year: year,
+      Hour: hour,
+      Minute: minute
+    }));
+
+    return this.http.post(this.url + "/checkTime", body);
+  }
+
 
 }

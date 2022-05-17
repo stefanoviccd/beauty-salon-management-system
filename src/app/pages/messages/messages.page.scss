@@ -11,5 +11,17 @@ ion-grid{
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
+ // height: 100%;
+}
+
+.secondItem{
   height: 100%;
+}
+
+ion-item{
+  background-color: var(--ion-color-tertiary) !important;
+}
+
+ion-button{
+  height: 1.5rem;
 }
