@@ -21,9 +21,18 @@ export class MyAppointmentsPage implements OnInit {
 
   getAppointments(){
     const u=this.authService.getLoggedInUser();
-    this.appointments=this.appointmentService.getUserAppointments(u);
-    console.log(this.appointments);
+    console.log(u);
+    this.appointmentService.getUserAppointments(u).subscribe(
+      (result) => {
+        this.appointments = result;
+        console.log(this.appointments);
+      },
+      (error) => {
+        console.log('Error occured', error);
+      }
+    );
   }
+  
   deleteAppointment(e: Appointment){
     this.appointmentService.delete(e);
   }

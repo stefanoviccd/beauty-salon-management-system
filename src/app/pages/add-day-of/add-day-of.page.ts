@@ -21,8 +21,18 @@ export class AddDayOfPage implements OnInit {
     this.getDaysOff();
   }
 
+  isDateBeforeToday(date) {
+    return new Date(date.toDateString()) < new Date(new Date().toDateString());
+  } 
+
+
  isDateEnabled = (dateIsoString: string) => {
     const date = new Date(dateIsoString);
+
+    if(this.isDateBeforeToday(date)){
+      return false;
+    }
+
     for(let i=0; i<this.daysOff.length; i++){
       if(this.daysOff[i].getUTCMonth() == date.getUTCMonth() && this.daysOff[i].getDate() == date.getDate() && this.daysOff[i].getFullYear()==date.getFullYear()){
         return false;

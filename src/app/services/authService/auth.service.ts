@@ -14,7 +14,7 @@ export class AuthService {
   private loggedInUser=new User(null,null,null,null,null,null);
 
   constructor(private route: Router,  private alert: AlertController) {
-    const u1=new User('dragana', 'dragana','Dragana', 'Stefanovic', '0876655443', new Role('client'));
+    const u1=new User('afurtula11@gmail.com', 'dragana','Dragana', 'Stefanovic', '0876655443', new Role('client'));
     const u2=new User('admin', 'admin','Admin', 'Admin', '0876655443', new Role('admin'));
     this.users=[u1,u2];
     //this.loggedIn=JSON.parse(window.localStorage.isLoggedIn);
@@ -39,7 +39,6 @@ export class AuthService {
     });
    // window.localStorage.loggedInUser = JSON.stringify(this.loggedInUser);
    // window.localStorage.isLoggedIn = JSON.stringify(true);
-
     return this.loggedInUser;
   }
   logout(){

@@ -32,12 +32,12 @@ export class NewAppointmentPage implements OnInit {
     return !isWeekend(date);
   };
   requestForAppointment(){
-    console.log(this.targetTreatment);
-    const treatment=this.treatmentService.getByName(this.targetTreatment);
-    const e=new Appointment(this.auth.getLoggedInUser(), this.date, this.time, null, 'zahtevan');
-    this.appointmentService.addAppointment(e);
-    console.log(e);
-    this.router.navigate(['/home/myAppointments']);
+    // console.log(this.targetTreatment);
+    // const treatment=this.treatmentService.getByName(this.targetTreatment);
+    // const e=new Appointment(this.auth.getLoggedInUser(), this.date, this.time, null, 'zahtevan');
+    // this.appointmentService.addAppointment(e);
+    // console.log(e);
+    // this.router.navigate(['/home/myAppointments']);
   }
   setDate(value){
 this.date= moment(value).format('YYYY-MM-DD');

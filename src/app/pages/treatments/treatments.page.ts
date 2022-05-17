@@ -34,6 +34,10 @@ export class TreatmentsPage implements OnInit {
     this.newTreatment = new Treatment('', '', null, 0);
   }
 
+  parseDate(date: Date){
+    return "1";
+  }
+
   async showModal() {
     const modal = await this.modalController.create({
       component: AddTreatmentModalPage,

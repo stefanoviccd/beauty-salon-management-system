@@ -13,17 +13,16 @@ import { Appointment } from 'src/app/model/Appointment';
   styleUrls: ['./scheduled-appointments.page.scss'],
 })
 export class ScheduledAppointmentsPage implements OnInit {
-  public appointments;
+  public scheduledAppointments;
+  public requiredAppointments;
   pipe = new DatePipe('en-US');
 
   constructor(private modalController: ModalController, private appointmentService: AppointmentService) { }
 
   ngOnInit() {
-    this.appointments=this.appointmentService.getAppointments();
-    this.appointments.forEach(e => {
-      e.date=this.pipe.transform(e.date,'dd/MM/yyyy');
-    });
-    console.log(this.appointments);
+    this.getScheduledAppointments();
+    this.getRequiredAppointments();
+
   }
   async showModal(e){
     const modal= await this.modalController.create({
@@ -39,27 +38,36 @@ export class ScheduledAppointmentsPage implements OnInit {
     await modal.present();
   }
   getScheduledAppointments(){
-   const  scheduledAppointments=[];
-   this.appointments.forEach(e => {
-     if(e.status==='zakazan'){
-      scheduledAppointments.push(e);
-     }
-
-   });
-        return scheduledAppointments;
-  }
-  getNewAppointments(){
-    const  newAppointments=[];
-    this.appointments.forEach(el => {
-      if(el.status==='zahtevan'){
-        newAppointments.push(el);
+  
+    this.appointmentService.getScheduledAppointments().subscribe(
+      (result) => {
+        this.scheduledAppointments = result;
+        console.log(this.scheduledAppointments);
+      },
+      (error) => {
+        console.log('Error occured', error);
       }
+    );
+    return this.scheduledAppointments;
+  }
 
-    });
-    return newAppointments;
+  getRequiredAppointments(){
+    this.appointmentService.getRequiredAppointments().subscribe(
+      (result) => {
+        this.requiredAppointments = result;
+        console.log(this.requiredAppointments);
+      },
+      (error) => {
+        console.log('Error occured', error);
+      }
+    );
+    return this.scheduledAppointments;
    }
+
+
    deleteAppointment(e){
      console.log('Trying to delete..');
      this.appointmentService.delete(e);
    }
+   
 }
