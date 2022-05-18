@@ -21,7 +21,6 @@ export class MyAppointmentsPage implements OnInit {
 
   getAppointments(){
     const u=this.authService.getLoggedInUser();
-    console.log(u);
     this.appointmentService.getUserAppointments(u).subscribe(
       (result) => {
         this.appointments = result;

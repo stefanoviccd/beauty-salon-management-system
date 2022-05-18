@@ -2,7 +2,7 @@
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="/login" text="Nazad" ></ion-back-button>
+        <ion-back-button defaultHref="/login"></ion-back-button>
       </ion-buttons>
       <ion-title slot="start">Beauty studio</ion-title>
 
@@ -22,11 +22,34 @@
             <ion-card-content lines="none">
               <ion-item>
                 <ion-label position="fixed" >
-                  Username
+                  First name
                 </ion-label>
                 <br />
-                <ion-input placeholder="Enter Username" [(ngModel)]="username"></ion-input>
+                <ion-input placeholder="Enter First name" [(ngModel)]="firstName"></ion-input>
 
+              </ion-item>
+              <ion-item>
+                <ion-label position="fixed" >
+                  Last name
+                </ion-label>
+                <br />
+                <ion-input placeholder="Enter Last name" [(ngModel)]="lastName"></ion-input>
+
+              </ion-item>
+              <ion-item>
+                <ion-label position="fixed" >
+                  Email
+                </ion-label>
+                <br />
+                <ion-input type="email" placeholder="Enter Email" [(ngModel)]="email"></ion-input>
+                <!-- <ion-input type="email" formControlName="email" [(ngModel)]="email"
+            placeholder="Please enter email here"></ion-input>
+                <div class="show-error">
+                  <div *ngIf="formGrp.get('email').hasError('required') && formGrp.get('email').dirty">Please enter email
+                  </div>
+                  <div *ngIf="formGrp.get('email').hasError('email') && formGrp.get('email').dirty">
+                    Please enter valid email</div>
+                </div> -->
               </ion-item>
               <ion-item >
                 <ion-label position="fixed" >

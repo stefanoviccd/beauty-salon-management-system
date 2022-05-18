@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [

@@ -13,7 +13,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-list *ngIf="getUserRole()==='client'">
+    <ion-list *ngIf="getUserRole()==='CLIENT'">
       <ion-item><a routerLink="/home/newAppointment">Zakaži termin</a></ion-item
       >
       <ion-item><a routerLink="/home/myAppointments">Moji termini</a></ion-item>
@@ -29,7 +29,7 @@
         <ion-toggle (ionChange)="changeTheme($event)" id="themeToggle" slot="end"></ion-toggle>
       </ion-item>
     </ion-list>
-    <ion-list *ngIf="getUserRole()==='admin'">
+    <ion-list *ngIf="getUserRole()==='ADMIN'">
       <ion-item><a routerLink="/home/scheduledAppointments">Zakazani termini</a></ion-item>
       <ion-item><a routerLink="/home/treatments">Usluge</a></ion-item>
       <ion-item><a routerLink="/home/dayOff">Neradni dani</a></ion-item>

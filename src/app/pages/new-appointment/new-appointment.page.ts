@@ -130,7 +130,7 @@ export class NewAppointmentPage implements OnInit {
     }
     this.appointmentService.addAppointment(
       this.targetTreatment,
-      this.auth.getLoggedInUser().username,
+      this.auth.getLoggedInUser().email,
       date1.getUTCDate(),
       date1.getUTCMonth() + 1,
       date1.getFullYear(),

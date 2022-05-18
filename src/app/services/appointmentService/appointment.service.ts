@@ -50,7 +50,7 @@ export class AppointmentService {
   }
 
   getUserAppointments(u: User){
-    return this.http.get<Appointment[]>(`${this.url + "/" + u.username}`);
+    return this.http.get<Appointment[]>(`${this.url + "/" + u.email}`);
   }
 
   addAppointment(treatmentId: number, username: string, day: number, month: number, year: number, hour: number, minute:number){

@@ -8,7 +8,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { CommonModule } from '@angular/common';
-import {MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -19,20 +19,32 @@ import { TreatmentsPageModule } from './pages/treatments/treatments.module';
 import { ScheduledAppointmentsPageModule } from './pages/scheduled-appointments/scheduled-appointments.module';
 import { MyAppointmentsPageModule } from './pages/my-appointments/my-appointments.module';
 import { NewAppointmentPageModule } from './pages/new-appointment/new-appointment.module';
-
-
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RegisterPageModule } from './pages/register/register.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, CommonModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase),
-  AngularFireAuthModule,     MatDatepickerModule,
-  MatNativeDateModule,
-  MatFormFieldModule,
-  HttpClientModule,
-  MatInputModule, TreatmentsPageModule,
-  ScheduledAppointmentsPageModule, MyAppointmentsPageModule, NewAppointmentPageModule ],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
+    TreatmentsPageModule,
+    ScheduledAppointmentsPageModule,
+    MyAppointmentsPageModule,
+    NewAppointmentPageModule,
+    RegisterPageModule
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

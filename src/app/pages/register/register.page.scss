@@ -15,3 +15,13 @@ ion-footer ion-toolbar{
   --color: black;
   font: italic 1.2em "Fira Sans", serif;
 }
+
+.formCls{
+  margin-top: 20px;
+}
+
+.show-error{
+  padding-top: 0.2rem;
+  color: red;
+  font-size: 12px;
+}

@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
     private renderer: Renderer2,
     private notificationService: NotificationService
   ) {
-    this.user = new User('dragana', 'dragana', '', '', '', new Role('client'));
+    //this.user = authService.getLoggedInUser();
   }
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class HomePage implements OnInit {
   }
 
   getUserRole() {
-    return this.authService.getUserRole().name;
+    return this.authService.getUserRole();
   }
 
   public changeTheme(event) {

@@ -14,15 +14,15 @@ export class NotificationService {
   constructor(private http: HttpClient) {}
 
   getReadNotifications(u: User) {
-    return this.http.get<UserNotification[]>(`${this.url}/read/` + u.username);
+    return this.http.get<UserNotification[]>(`${this.url}/read/` + u.email);
   }
 
   getUnreadNotifications(u: User) {
-    return this.http.get<UserNotification[]>(`${this.url}/unread/` + u.username);
+    return this.http.get<UserNotification[]>(`${this.url}/unread/` + u.email);
   }
 
   getUnreadCount(u: User) {
-    return this.http.get<number>(`${this.url}/count/` + u.username);
+    return this.http.get<number>(`${this.url}/count/` + u.email);
   }
 
 
