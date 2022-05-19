@@ -3,6 +3,7 @@ import { isWeekend, parseISO } from 'date-fns';
 import { NonWorkingDayService } from 'src/app/services/nonWorkingDayService/non-working-day.service';
 import * as moment from 'moment';
 import { DateOff } from 'src/app/model/DateOff';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-day-of',
@@ -13,8 +14,10 @@ export class AddDayOfPage implements OnInit {
   public dayOff;
   public datesModels: DateOff[] = [];
   public daysOff: Date[] = [];
+  private allet: any;
 
-  constructor(private dayOffService: NonWorkingDayService) {}
+  constructor(private dayOffService: NonWorkingDayService,
+    private alert: AlertController) {}
 
   ngOnInit() {
     this.getDaysOff();
@@ -40,9 +43,12 @@ export class AddDayOfPage implements OnInit {
         return false;
       }
     }
-
     return !isWeekend(date);
   };
+  async allertAll(header: string, message: string) {
+    this.allet = await this.alert.create({ header, message, buttons: ['ok'] });
+    await this.allet.present();
+  }
 
   setDayOff(value) {
     this.dayOff = value;
@@ -56,7 +62,7 @@ export class AddDayOfPage implements OnInit {
         this.ngOnInit();
       },
       (error) => {
-        alert('Error...');
+       this.allertAll('Greska', 'Doslo je do greske, pokusajte kasnije.');
       }
     );
   }

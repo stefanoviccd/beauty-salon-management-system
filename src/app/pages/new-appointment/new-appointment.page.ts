@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { isWeekend } from 'date-fns';
 import * as moment from 'moment';
 import { DateOff } from 'src/app/model/DateOff';
@@ -23,18 +24,25 @@ export class NewAppointmentPage implements OnInit {
   public daysOff: Date[] = [];
   public datesModels: DateOff[] = [];
 
+  private allet: any;
   constructor(
     private dayOffService: NonWorkingDayService,
     private treatmentService: TreatmentService,
     private auth: AuthService,
     private appointmentService: AppointmentService,
-    private router: Router
+    private router: Router,
+    private alert: AlertController
   ) {}
 
   ngOnInit() {
     this.getDaysOff();
     this.getTreatments();
   }
+  async allertAll(header: string, message: string) {
+    this.allet = await this.alert.create({ header, message, buttons: ['ok'] });
+    await this.allet.present();
+  }
+
 
   getDaysOff() {
     this.dayOffService.getDaysOff().subscribe(
@@ -123,7 +131,7 @@ export class NewAppointmentPage implements OnInit {
 
   requestForAppointment() {
     let date1;
-    if (this.date == undefined) {
+    if (this.date === undefined) {
       date1 = new Date();
     } else {
       date1 = new Date(this.date);
@@ -141,7 +149,7 @@ export class NewAppointmentPage implements OnInit {
         this.router.navigate(['/home/myAppointments']);
     },
     error => {
-      alert("Nije moguće zakazati uslugu u traženom terminu.");
+      this.allertAll('Greška', 'Nije moguće zakazati uslugu u traženom terminu.');
       console.log(error);
     });
 

@@ -39,6 +39,18 @@ export class ScheduledAppointmentsPage implements OnInit {
       },
     });
     await modal.present();
+    const { data } = await modal.onWillDismiss();
+    if(data.action==='close'){}
+    else if(data.action==='schedule'){
+      this.scheduleAppointment(data.appointment);
+    }
+    else if(data.action==='reject'){
+      this.rejectAppointment(data.appointment);
+    }
+    else if(data.action==='delete'){
+      this.deleteAppointment(data.appointment);
+    }
+
   }
 
   getScheduledAppointments() {
@@ -65,10 +77,36 @@ export class ScheduledAppointmentsPage implements OnInit {
     return this.scheduledAppointments;
   }
 
-  deleteAppointment(e) {
-    this.appointmentService.delete(e).subscribe(
-      (result) => {
-        this.ngOnInit();
+
+  deleteAppointment(appointment: Appointment) {
+
+    console.log('Trying to delete..');
+    this.appointmentService.delete(appointment).subscribe(
+      (data) => {
+
+      },
+      (error) => {
+        console.log('Error occured', error);
+      }
+    );
+  }
+  scheduleAppointment(appointment: Appointment) {
+    console.log('Trying to schedule..');
+    this.appointmentService.schedule(appointment).subscribe(
+      (data) => {
+      //  this.closeModal();
+      },
+      (error) => {
+        console.log('Error occured', error);
+      }
+    );
+  }
+
+  rejectAppointment(appointment: Appointment) {
+    console.log('Trying to reject..');
+    this.appointmentService.reject(appointment).subscribe(
+      (data) => {
+       // this.closeModal();
       },
       (error) => {
         console.log('Error occured', error);

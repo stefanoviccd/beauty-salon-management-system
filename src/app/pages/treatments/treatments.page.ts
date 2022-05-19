@@ -20,6 +20,7 @@ export class TreatmentsPage implements OnInit {
   public allet: any;
   public treatments: Treatment[] = [];
   public newTreatment: Treatment;
+  private alet: any;
 
   constructor(
     private alert: AlertController,
@@ -38,6 +39,8 @@ export class TreatmentsPage implements OnInit {
     return "1";
   }
 
+
+
   async showModal() {
     const modal = await this.modalController.create({
       component: AddTreatmentModalPage,
@@ -51,8 +54,15 @@ export class TreatmentsPage implements OnInit {
       },
     });
     await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if(data.action==='close'){}
+    else if(data.action==='add'){
+      this.addTreatment(data.treatment);
+    }
+
   }
-  
+
   async allertAll(header: string, message: string) {
     this.allet = await this.alert.create({ header, message, buttons: ['ok'] });
     await this.allet.present();
@@ -75,7 +85,7 @@ export class TreatmentsPage implements OnInit {
       this.ngOnInit();
     },
     error => {
-      alert('Error occured');
+     this.allertAll('Greska', 'Doslo je do greske.');
       console.log(error);
     });
   }
@@ -95,6 +105,11 @@ export class TreatmentsPage implements OnInit {
       },
     });
     await modal.present();
+    const { data } = await modal.onWillDismiss();
+    if(data.action==='close'){}
+    else if(data.action==='change'){
+      this.changeTreatmentInfo(data.treatment);
+    }
   }
 
   getUserRole(){
@@ -103,5 +118,26 @@ return this.authService.getUserRole();
 
   scheduleSpecificTreatment(t: Treatment){
     this.router.navigate(['home/newAppointment']);
+  }
+  addTreatment(treatment: Treatment){
+    this.treatmentService.addTreatment(treatment).subscribe(
+      (result) => {
+      //  this.closeModal();
+      },
+      (error) => {
+        console.log('Error occured', error);
+      }
+    );
+  }
+
+  changeTreatmentInfo(treatment: Treatment){
+    this.treatmentService.updateTreatment(treatment).subscribe(
+      (result) => {
+      //  this.closeModal();
+      },
+      (error) => {
+        console.log('Error occured', error);
+      }
+    );
   }
 }

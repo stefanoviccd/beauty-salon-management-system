@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import tr from 'date-fns/esm/locale/tr/index.js';
 import { Treatment } from 'src/app/model/Treatment';
 import { TreatmentsPage } from 'src/app/pages/treatments/treatments.page';
 import { TreatmentService } from 'src/app/services/threatmentService/treatment.service';
@@ -22,28 +23,26 @@ export class AddTreatmentModalPage implements OnInit {
   }
 
   closeModal() {
-    this.modalController.dismiss();
+    this.modalController.dismiss(
+      { action: 'close'
+      }
+    );
     this.treatmentsPage.ngOnInit();
 }
 
 addTreatment(){
-  this.treatmentService.addTreatment(this.treatment).subscribe(
-    (result) => {
-      this.closeModal();
-    },
-    (error) => {
-      console.log('Error occured', error);
+  this.modalController.dismiss(
+    { action: 'add',
+    treatment: this.treatment
     }
   );
+
 }
 
 changeTreatmentInfo(){
-  this.treatmentService.updateTreatment(this.treatment).subscribe(
-    (result) => {
-      this.closeModal();
-    },
-    (error) => {
-      console.log('Error occured', error);
+  this.modalController.dismiss(
+    { action: 'change',
+    treatment: this.treatment
     }
   );
 }
