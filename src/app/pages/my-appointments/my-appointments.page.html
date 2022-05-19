@@ -21,7 +21,7 @@
       <ion-col>{{e.treatment.name}}</ion-col>
       <ion-col>{{e.date}}</ion-col>
       <ion-col>{{e.time}}</ion-col>
-      <ion-col>{{e.status}}</ion-col>
+      <ion-col>{{e.status==="REQUESTED" ? "Zahtev" : "Zakazan"}}</ion-col>
       <ion-col><ion-button style="height: 1.5rem;" color="secondary" (click)="deleteAppointment(e)">Otkazi</ion-button></ion-col>
     </ion-row>
 

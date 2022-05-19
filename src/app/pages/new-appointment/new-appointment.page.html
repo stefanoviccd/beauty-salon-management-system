@@ -42,10 +42,7 @@
                 </ion-label>
 
                   <ion-select [(ngModel)]="time" [disabled]="isTimeDisabled()">
-                    <ion-select-option value="8:30">08:30</ion-select-option>
-                    <ion-select-option value="9:30">09:30</ion-select-option>
-                    <ion-select-option value="11:00">11:00</ion-select-option>
-                    <ion-select-option value="12:30">12:30</ion-select-option>
+                    <ion-select-option  *ngFor="let e of freeAppointments; index as i" value={{e.e}} >{{e}}</ion-select-option>
                   </ion-select>
 
               </ion-item>

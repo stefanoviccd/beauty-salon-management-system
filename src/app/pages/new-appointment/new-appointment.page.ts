@@ -23,6 +23,7 @@ export class NewAppointmentPage implements OnInit {
   public selectedTreatment: Treatment;
   public daysOff: Date[] = [];
   public datesModels: DateOff[] = [];
+  public freeAppointments;
 
   private allet: any;
   constructor(
@@ -157,5 +158,21 @@ export class NewAppointmentPage implements OnInit {
 
   setDate(value) {
     this.date = moment(value).format('YYYY-MM-DD');
+    if(this.selectedTreatment!=null){
+      //povuci termine za ovaj datum i uslugu
+     // popuni listu termina
+     this.appointmentService
+     .getFreeAppointmentsForTreatment(this.date, this.selectedTreatment)
+     .subscribe(
+       (data) => {
+        this.freeAppointments=data;
+       },
+       (error) => {
+         alert(error.error);
+       }
+     );
+     console.log(this.selectedTreatment);
+     console.log(this.date);
+    }
   }
 }

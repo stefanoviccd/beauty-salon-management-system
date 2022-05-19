@@ -27,6 +27,8 @@ export class AppointmentService {
 //       e.date=this.pipe.transform(e.date,'dd/MM/yyyy');
 //  });
   }
+  getFreeAppointmentsForTreatment(date: any, selectedTreatment: Treatment) {
+   return null;}
 
   getScheduledAppointments(){
     return this.http.get<Appointment[]>(`${this.url+"/scheduled"}`);
@@ -65,7 +67,7 @@ export class AppointmentService {
     }));
 
     return this.http.post(this.url, body);
-  
+
   }
 
   isTimeAvailable(day: number, month: number, year: number, hour: number, minute:number){
