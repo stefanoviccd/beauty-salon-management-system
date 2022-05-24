@@ -40,7 +40,7 @@ export class AuthService {
       })
     );
 
-    return this.http.post<User>(this.urlLogin, body);
+    return this.http.post<string>(this.urlLogin, body);
   }
 
   logout() {

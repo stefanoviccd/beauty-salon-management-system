@@ -40,12 +40,6 @@ export class LoginPage implements OnInit {
 
     this.authService.login(username, password).subscribe(
       (data) => {
-<<<<<<< HEAD
-=======
-        console.log(data)
-        this.user = data['user'];
-        //ZA TOKEN ----> data['token']
->>>>>>> fca91eca7a499467835c8c5702af0f7faa420428
         this.authService.setLoggedInUser(this.user);
         window.localStorage.setItem('token', data);
         if (this.user.role === 'CLIENT') {
