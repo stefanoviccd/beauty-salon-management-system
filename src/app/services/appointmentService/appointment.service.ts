@@ -21,8 +21,8 @@ export class AppointmentService {
 
   getScheduledAppointments(){
     const token=window.localStorage.getItem("token");
-    const hdr = new HttpHeaders();
-    hdr.append("Authorization", token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.get<Appointment[]>(`${this.url+"/scheduled"}`, {
       headers: hdr
     });
@@ -30,8 +30,8 @@ export class AppointmentService {
 
   getRequiredAppointments(){
     const token=window.localStorage.getItem("token");
-    const hdr = new HttpHeaders();
-    hdr.append("Authorization", token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.get<Appointment[]>(`${this.url+"/required"}`,  {
       headers: hdr
     });
@@ -47,8 +47,8 @@ export class AppointmentService {
         Year: year
       }));
       const token=window.localStorage.getItem("token");
-      const hdr = new HttpHeaders();
-      hdr.append("Authorization", token);
+      const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.post<string[]>(`${this.url + '/freeAppointmentTime/' + selectedTreatment}`, body, {
       headers: hdr
     });
@@ -58,8 +58,8 @@ export class AppointmentService {
 
   delete(e: Appointment){
     const token=window.localStorage.getItem("token");
-    const hdr = new HttpHeaders();
-    hdr.append("Authorization", token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.delete(this.url + '/' + e.id,  {
       headers: hdr
     });
@@ -67,8 +67,8 @@ export class AppointmentService {
 
   reject(e: Appointment){
     const token=window.localStorage.getItem("token");
-    const hdr = new HttpHeaders();
-    hdr.append("Authorization", token);
+    const hdr = new HttpHeaders()
+    .set('Authorization', "Bearer " + token);
     return this.http.put(this.url + '/reject', e.id,  {
       headers: hdr
     });
@@ -76,8 +76,8 @@ export class AppointmentService {
 
   schedule(e: Appointment){
     const token=window.localStorage.getItem("token");
-    const hdr = new HttpHeaders();
-    hdr.append("Authorization", token);
+    const hdr = new HttpHeaders()
+    .set('Authorization', "Bearer " + token);
     return this.http.put(this.url + '/accept', e.id,  {
       headers: hdr
     });
@@ -85,8 +85,8 @@ export class AppointmentService {
 
   getUserAppointments(u: User){
     const token=window.localStorage.getItem("token");
-    const hdr = new HttpHeaders();
-    hdr.append("Authorization", token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.get<Appointment[]>(`${this.url + "/" + u.email}`,  {
       headers: hdr
     });
@@ -94,8 +94,8 @@ export class AppointmentService {
 
   addAppointment(treatmentId: number, username: string, day: number, month: number, year: number, hour: number, minute: number){
     const token=window.localStorage.getItem("token");
-    const hdr = new HttpHeaders();
-    hdr.append("Authorization", token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     const body= JSON.parse(JSON.stringify({
       Email: username,
       TreatmentId: treatmentId,
@@ -114,8 +114,8 @@ export class AppointmentService {
 
   isTimeAvailable(day: number, month: number, year: number, hour: number, minute: number){
     const token=window.localStorage.getItem("token");
-    const hdr = new HttpHeaders();
-    hdr.append("Authorization", token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     const body= JSON.parse(JSON.stringify({
       Day: day,
       Month: month,

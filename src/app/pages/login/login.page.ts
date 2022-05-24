@@ -40,8 +40,9 @@ export class LoginPage implements OnInit {
 
     this.authService.login(username, password).subscribe(
       (data) => {
+        this.user = data['user'];
         this.authService.setLoggedInUser(this.user);
-        window.localStorage.setItem('token', data);
+        window.localStorage.setItem('token', data['token']);
         if (this.user.role === 'CLIENT') {
           this.route.navigate(['home/myAppointments']);
         } else {

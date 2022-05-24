@@ -19,18 +19,18 @@ export class TreatmentService {
 
   getAllTreatments() {
     const token=window.localStorage.getItem('token');
-    const hdr = new HttpHeaders();
-    hdr.append('Authorization', token);
+    const headers = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.get<Treatment[]>(`${this.url}`, {
-      headers: hdr
+      headers: headers
     });
 
   }
 
   addTreatment(t: Treatment) {
     const token=window.localStorage.getItem('token');
-    const hdr = new HttpHeaders();
-    hdr.append('Authorization', token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     const body= JSON.parse(JSON.stringify(t));
     return this.http.post(this.url, body,  {
       headers: hdr
@@ -39,8 +39,8 @@ export class TreatmentService {
 
   deleteTreatment(t: Treatment) {
     const token=window.localStorage.getItem('token');
-    const hdr = new HttpHeaders();
-    hdr.append('Authorization', token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.delete(this.url + '/' + t.id,  {
       headers: hdr
     });
@@ -48,8 +48,8 @@ export class TreatmentService {
 
   updateTreatment(t: Treatment) {
     const token=window.localStorage.getItem('token');
-    const hdr = new HttpHeaders();
-    hdr.append('Authorization', token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     const body= JSON.parse(JSON.stringify(t));
     return this.http.put(this.url, body,  {
       headers: hdr

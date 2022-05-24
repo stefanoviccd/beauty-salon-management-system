@@ -15,8 +15,8 @@ export class NotificationService {
 
   getReadNotifications(u: User) {
     const token=window.localStorage.getItem('token');
-    const hdr = new HttpHeaders();
-    hdr.append('Authorization', token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.get<UserNotification[]>(`${this.url}/read/` + u.email, {
       headers: hdr
     });
@@ -24,8 +24,8 @@ export class NotificationService {
 
   getUnreadNotifications(u: User) {
     const token=window.localStorage.getItem('token');
-    const hdr = new HttpHeaders();
-    hdr.append('Authorization', token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.get<UserNotification[]>(`${this.url}/unread/` + u.email,  {
       headers: hdr
     });
@@ -33,8 +33,8 @@ export class NotificationService {
 
   getUnreadCount(u: User) {
     const token=window.localStorage.getItem('token');
-    const hdr = new HttpHeaders();
-    hdr.append('Authorization', token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.get<number>(`${this.url}/count/` + u.email,  {
       headers: hdr
     });
@@ -43,8 +43,8 @@ export class NotificationService {
 
   deleteNotification(n: UserNotification) {
     const token=window.localStorage.getItem('token');
-    const hdr = new HttpHeaders();
-    hdr.append('Authorization', token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.delete(this.url + '/' + n.id,  {
       headers: hdr
     });

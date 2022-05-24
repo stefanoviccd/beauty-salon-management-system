@@ -24,8 +24,8 @@ export class NonWorkingDayService {
     const body= JSON.parse(JSON.stringify(data));
     // eslint-disable-next-line @typescript-eslint/quotes
     const token=window.localStorage.getItem("token");
-    const hdr = new HttpHeaders();
-    hdr.append('Authorization', token);
+    const hdr = new HttpHeaders()
+    .set('Authorization', "Bearer " + token);
 
     return this.http.post(this.url, body, {
       headers: hdr
@@ -35,8 +35,8 @@ export class NonWorkingDayService {
 
   getDaysOff(){
     const token=window.localStorage.getItem('token');
-    const hdr = new HttpHeaders();
-    hdr.append('Authorization', token);
+    const hdr = new HttpHeaders()
+                    .set('Authorization', "Bearer " + token);
     return this.http.get<DateOff[]>(`${this.url}`, {
       headers: hdr
     });
