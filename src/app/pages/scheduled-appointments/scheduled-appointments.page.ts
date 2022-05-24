@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { TreatmentModalPage } from 'src/app/modals/treatment-modal/treatment-modal.page';
 import { AppointmentService } from 'src/app/services/appointmentService/appointment.service';
 import * as moment from 'moment';
@@ -14,10 +14,12 @@ import { Appointment } from 'src/app/model/Appointment';
 export class ScheduledAppointmentsPage implements OnInit {
   public scheduledAppointments;
   public requiredAppointments;
+  allet: any;
   pipe = new DatePipe('en-US');
 
   constructor(
     private modalController: ModalController,
+    private alert: AlertController,
     private appointmentService: AppointmentService
   ) {}
 
@@ -27,6 +29,11 @@ export class ScheduledAppointmentsPage implements OnInit {
     setTimeout(() => {
       this.ngOnInit();
     }, 1000 * 60);
+  }
+
+  async allertAll(header: string, message: string) {
+    this.allet = await this.alert.create({ header, message, buttons: ['ok'] });
+    await this.allet.present();
   }
 
   async showModal(e) {
@@ -58,7 +65,7 @@ export class ScheduledAppointmentsPage implements OnInit {
         this.scheduledAppointments = result;
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške.');
       }
     );
     return this.scheduledAppointments;
@@ -70,32 +77,31 @@ export class ScheduledAppointmentsPage implements OnInit {
         this.requiredAppointments = result;
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške.');
       }
     );
     return this.scheduledAppointments;
   }
 
   deleteAppointment(appointment: Appointment) {
-    console.log('Trying to delete..');
     this.appointmentService.delete(appointment).subscribe(
       (data) => {
+        this.allertAll('', 'Termin uspešno otkazan.');
         this.ngOnInit();
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške. Molimo Vas, pokušajte ponovo.');
       }
     );
   }
   scheduleAppointment(appointment: Appointment) {
-    console.log('Trying to schedule..');
     this.appointmentService.schedule(appointment).subscribe(
       (data) => {
-        //  this.closeModal();
+        this.allertAll('', 'Termin uspešno zakazan.');
         this.ngOnInit();
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške. Molimo Vas, pokušajte ponovo.');
       }
     );
   }
@@ -105,10 +111,11 @@ export class ScheduledAppointmentsPage implements OnInit {
     this.appointmentService.reject(appointment).subscribe(
       (data) => {
         // this.closeModal();
+        this.allertAll('', 'Termin uspešno odbijen.');
         this.ngOnInit();
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške. Molimo Vas, pokušajte ponovo.');
       }
     );
   }

@@ -33,7 +33,7 @@ export class MessagesPage implements OnInit {
         this.readNotifications = result;
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške.');
       }
     );
 
@@ -42,7 +42,7 @@ export class MessagesPage implements OnInit {
         this.unreadNotifications = result;
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške.');
       }
     );
   }

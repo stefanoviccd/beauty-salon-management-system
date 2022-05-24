@@ -55,11 +55,10 @@ export class NewAppointmentPage implements OnInit {
         .subscribe(
           (data) => {
             this.freeAppointments = data;
-            console.log(this.freeAppointments);
             this.timeDisabled = false;
           },
           (error) => {
-            alert(error.error);
+            this.allertAll('Greška', 'Došlo je do greške.');
           }
         );
     }
@@ -76,7 +75,7 @@ export class NewAppointmentPage implements OnInit {
         });
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške.');
       }
     );
   }
@@ -87,7 +86,7 @@ export class NewAppointmentPage implements OnInit {
         this.allTreatments = result;
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške.');
       }
     );
   }
@@ -146,7 +145,6 @@ export class NewAppointmentPage implements OnInit {
             'Greška',
             'Nije moguće zakazati uslugu u traženom terminu.'
           );
-          console.log(error);
         }
       );
   }
@@ -167,11 +165,10 @@ export class NewAppointmentPage implements OnInit {
         .subscribe(
           (data) => {
             this.freeAppointments = data;
-            console.log(this.freeAppointments);
             this.timeDisabled = false;
           },
           (error) => {
-            alert(error.error);
+            this.allertAll('Greška', 'Došlo je do greške.');
           }
         );
     }

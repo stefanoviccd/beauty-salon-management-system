@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Appointment } from 'src/app/model/Appointment';
 import { AppointmentService } from 'src/app/services/appointmentService/appointment.service';
 import { AuthService } from 'src/app/services/authService/auth.service';
@@ -10,13 +11,19 @@ import { AuthService } from 'src/app/services/authService/auth.service';
 })
 export class MyAppointmentsPage implements OnInit {
   public appointments;
+  allet: any;
 
-  constructor(private authService: AuthService, private appointmentService: AppointmentService) {
+  constructor(private authService: AuthService, private appointmentService: AppointmentService, private alert: AlertController) {
    }
 
 
   ngOnInit() {
     this.getAppointments();
+  }
+
+  async allertAll(header: string, message: string) {
+    this.allet = await this.alert.create({ header, message, buttons: ['ok'] });
+    await this.allet.present();
   }
 
   getAppointments(){
@@ -26,7 +33,7 @@ export class MyAppointmentsPage implements OnInit {
         this.appointments = result;
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške.');
       }
     );
   }
@@ -34,10 +41,11 @@ export class MyAppointmentsPage implements OnInit {
   deleteAppointment(e: Appointment){
     this.appointmentService.delete(e).subscribe(
       (result) => {
+        this.allertAll('', 'Termin uspešno otkazan.');
         this.ngOnInit();
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške. Molimo Vas, pokušajte ponovo.');
       }
     );
   }

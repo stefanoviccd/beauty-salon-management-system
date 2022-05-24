@@ -39,8 +39,6 @@ export class TreatmentsPage implements OnInit {
     return "1";
   }
 
-
-
   async showModal() {
     const modal = await this.modalController.create({
       component: AddTreatmentModalPage,
@@ -74,7 +72,7 @@ export class TreatmentsPage implements OnInit {
         this.treatments = result;
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške.');
       }
     );
   }
@@ -85,8 +83,7 @@ export class TreatmentsPage implements OnInit {
       this.ngOnInit();
     },
     error => {
-     this.allertAll('Greska', 'Doslo je do greske.');
-      console.log(error);
+      this.allertAll('Greška', 'Došlo je do greške.');
     });
   }
 
@@ -122,10 +119,11 @@ return this.authService.getUserRole();
   addTreatment(treatment: Treatment){
     this.treatmentService.addTreatment(treatment).subscribe(
       (result) => {
-      //  this.closeModal();
+        this.allertAll('', 'Tretman uspešno dodat.');
+        this.ngOnInit();
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške.');
       }
     );
   }
@@ -133,10 +131,10 @@ return this.authService.getUserRole();
   changeTreatmentInfo(treatment: Treatment){
     this.treatmentService.updateTreatment(treatment).subscribe(
       (result) => {
-      //  this.closeModal();
+        this.allertAll('', 'Tretman uspešno promenjen.');
       },
       (error) => {
-        console.log('Error occured', error);
+        this.allertAll('Greška', 'Došlo je do greške.');
       }
     );
   }

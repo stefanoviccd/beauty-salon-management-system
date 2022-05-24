@@ -61,7 +61,7 @@ export class RegisterPage implements OnInit {
               this.router.navigate(['login']);
             },
             (error) => {
-              alert(error.error);
+              this.allertAll('Greška', 'Došlo je do greške. Molimo Vas, pokušajte ponovo.');
             }
           );
       }
