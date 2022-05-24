@@ -22,7 +22,6 @@ export class TreatmentModalPage implements OnInit {
         action:'close'
       }
     );
-    this.scheduledAppointmentsPage.ngOnInit();
   }
 
   deleteAppointment() {

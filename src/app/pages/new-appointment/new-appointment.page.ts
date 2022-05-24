@@ -24,6 +24,7 @@ export class NewAppointmentPage implements OnInit {
   public daysOff: Date[] = [];
   public datesModels: DateOff[] = [];
   public freeAppointments;
+  public timeDisabled = true;
 
   private allet: any;
   constructor(
@@ -44,6 +45,25 @@ export class NewAppointmentPage implements OnInit {
     await this.allet.present();
   }
 
+  treatmentChanged(){
+  this.timeDisabled=true;
+  this.time = undefined;
+   if (this.date != undefined) {
+      let date1 = new Date(this.date);
+      this.appointmentService
+        .getFreeAppointmentsForTreatment(date1, this.targetTreatment)
+        .subscribe(
+          (data) => {
+            this.freeAppointments = data;
+            console.log(this.freeAppointments);
+            this.timeDisabled = false;
+          },
+          (error) => {
+            alert(error.error);
+          }
+        );
+    }
+  }
 
   getDaysOff() {
     this.dayOffService.getDaysOff().subscribe(
@@ -76,36 +96,6 @@ export class NewAppointmentPage implements OnInit {
     return this.targetTreatment == undefined || this.time == undefined;
   }
 
-  isTimeDisabled() {
-    return this.targetTreatment == undefined;
-  }
-
-  // isTimeAvailable(value){
-  //   let date1;
-  //   if (this.date == undefined) {
-  //     date1 = new Date();
-  //   } else {
-  //     date1 = new Date(this.date);
-  //   }
-  //   console.log(value);
-
-  //   this.appointmentService.isTimeAvailable(date1.getUTCDate(),
-  //   date1.getUTCMonth() + 1,
-  //   date1.getFullYear(),
-  //   value.substring(0, value.indexOf(':')),
-  //   value.substring(value.indexOf(':') + 1)).subscribe(
-  //     data => {
-  //       if(data=="true"){
-  //         return true;
-  //       }
-  //       return false;
-  //   },
-  //   error => {
-  //     alert("Error occured...");
-  //     console.log(error);
-  //   });;
-  // }
-
   isDateBeforeToday(date) {
     return new Date(date.toDateString()) < new Date(new Date().toDateString());
   }
@@ -137,42 +127,53 @@ export class NewAppointmentPage implements OnInit {
     } else {
       date1 = new Date(this.date);
     }
-    this.appointmentService.addAppointment(
-      this.targetTreatment,
-      this.auth.getLoggedInUser().email,
-      date1.getUTCDate(),
-      date1.getUTCMonth() + 1,
-      date1.getFullYear(),
-      this.time.substring(0, this.time.indexOf(':')),
-      this.time.substring(this.time.indexOf(':') + 1)
-    ).subscribe(
-      data => {
-        this.router.navigate(['/home/myAppointments']);
-    },
-    error => {
-      this.allertAll('Greška', 'Nije moguće zakazati uslugu u traženom terminu.');
-      console.log(error);
-    });
+    this.appointmentService
+      .addAppointment(
+        this.targetTreatment,
+        this.auth.getLoggedInUser().email,
+        date1.getUTCDate(),
+        date1.getUTCMonth() + 1,
+        date1.getFullYear(),
+        this.time.substring(0, this.time.indexOf(':')),
+        this.time.substring(this.time.indexOf(':') + 1)
+      )
+      .subscribe(
+        (data) => {
+          this.router.navigate(['/home/myAppointments']);
+        },
+        (error) => {
+          this.allertAll(
+            'Greška',
+            'Nije moguće zakazati uslugu u traženom terminu.'
+          );
+          console.log(error);
+        }
+      );
+  }
 
+  isTimeDisabled(){
+    return this.timeDisabled;
   }
 
   setDate(value) {
+    this.time = undefined;
     this.date = moment(value).format('YYYY-MM-DD');
-    if(this.selectedTreatment!=null){
+    if (this.targetTreatment != undefined) {
+      let date1 = new Date(this.date);
       //povuci termine za ovaj datum i uslugu
-     // popuni listu termina
-     this.appointmentService
-     .getFreeAppointmentsForTreatment(this.date, this.selectedTreatment)
-     .subscribe(
-       (data) => {
-        this.freeAppointments=data;
-       },
-       (error) => {
-         alert(error.error);
-       }
-     );
-     console.log(this.selectedTreatment);
-     console.log(this.date);
+      // popuni listu termina
+      this.appointmentService
+        .getFreeAppointmentsForTreatment(date1, this.targetTreatment)
+        .subscribe(
+          (data) => {
+            this.freeAppointments = data;
+            console.log(this.freeAppointments);
+            this.timeDisabled = false;
+          },
+          (error) => {
+            alert(error.error);
+          }
+        );
     }
   }
 }
