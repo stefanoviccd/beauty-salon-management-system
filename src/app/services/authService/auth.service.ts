@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -46,7 +47,8 @@ export class AuthService {
      Password: pass
    }));
 
-   return this.http.post<User>(this.urlLogin, body);
+   return this.http.post<string>(this.urlLogin, body
+    );
   }
 
   logout(){
@@ -62,7 +64,7 @@ export class AuthService {
       FirstName: firstName,
       LastName: lastName
     }));
- 
+
     return this.http.post<User>(this.urlRegister, body);
   }
 
@@ -70,7 +72,7 @@ export class AuthService {
     return this.loggedInUser.role;
   }
 
-  setLoggedInUser(u:User){
+  setLoggedInUser(u: User){
     this.loggedInUser = u;
     this.loggedIn = true;
   }

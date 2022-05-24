@@ -17,21 +17,41 @@ export class TreatmentService {
   constructor(private http: HttpClient) {}
 
   getAllTreatments() {
-    return this.http.get<Treatment[]>(`${this.url}`);
+    const token=window.localStorage.getItem('token');
+    const hdr = new HttpHeaders();
+    hdr.append('Authorization', token);
+    return this.http.get<Treatment[]>(`${this.url}`, {
+      headers: hdr
+    });
   }
 
   addTreatment(t: Treatment) {
+    const token=window.localStorage.getItem('token');
+    const hdr = new HttpHeaders();
+    hdr.append('Authorization', token);
     const body= JSON.parse(JSON.stringify(t));
-    return this.http.post(this.url, body);
+    return this.http.post(this.url, body,  {
+      headers: hdr
+    });
   }
 
   deleteTreatment(t: Treatment) {
-    return this.http.delete(this.url + '/' + t.id);
+    const token=window.localStorage.getItem('token');
+    const hdr = new HttpHeaders();
+    hdr.append('Authorization', token);
+    return this.http.delete(this.url + '/' + t.id,  {
+      headers: hdr
+    });
   }
 
   updateTreatment(t: Treatment) {
+    const token=window.localStorage.getItem('token');
+    const hdr = new HttpHeaders();
+    hdr.append('Authorization', token);
     const body= JSON.parse(JSON.stringify(t));
-    return this.http.put(this.url, body);
+    return this.http.put(this.url, body,  {
+      headers: hdr
+    });
   }
 
 }

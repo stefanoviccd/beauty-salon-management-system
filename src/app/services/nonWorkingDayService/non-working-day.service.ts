@@ -16,28 +16,30 @@ export class NonWorkingDayService {
   constructor(private http: HttpClient) { }
 
   addDayOff(d: Date){
-    let data = {
+    const data = {
       day: d.getUTCDate(),
       month: d.getUTCMonth() + 1,
       year: d.getUTCFullYear()
-    }
-   
+    };
     const body= JSON.parse(JSON.stringify(data));
+    // eslint-disable-next-line @typescript-eslint/quotes
+    const token=window.localStorage.getItem("token");
+    const hdr = new HttpHeaders();
+    hdr.append('Authorization', token);
 
-    return this.http.post(this.url, body);
+    return this.http.post(this.url, body, {
+      headers: hdr
+    });
 
   }
 
   getDaysOff(){
-    return this.http.get<DateOff[]>(`${this.url}`);
-    // this.http.get(this.url).subscribe(
-    //   data => {
-    //   console.log(data);
-    //   return data;
-    // },
-    // error => {
-    //   alert(error);
-    // });
+    const token=window.localStorage.getItem('token');
+    const hdr = new HttpHeaders();
+    hdr.append('Authorization', token);
+    return this.http.get<DateOff[]>(`${this.url}`, {
+      headers: hdr
+    });
 
   }
 

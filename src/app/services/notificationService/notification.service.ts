@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  HttpClient,
+  HttpClient, HttpHeaders,
 } from '@angular/common/http';
 import { User } from 'src/app/model/User';
 import { UserNotification } from 'src/app/model/Notification';
@@ -14,20 +14,40 @@ export class NotificationService {
   constructor(private http: HttpClient) {}
 
   getReadNotifications(u: User) {
-    return this.http.get<UserNotification[]>(`${this.url}/read/` + u.email);
+    const token=window.localStorage.getItem('token');
+    const hdr = new HttpHeaders();
+    hdr.append('Authorization', token);
+    return this.http.get<UserNotification[]>(`${this.url}/read/` + u.email, {
+      headers: hdr
+    });
   }
 
   getUnreadNotifications(u: User) {
-    return this.http.get<UserNotification[]>(`${this.url}/unread/` + u.email);
+    const token=window.localStorage.getItem('token');
+    const hdr = new HttpHeaders();
+    hdr.append('Authorization', token);
+    return this.http.get<UserNotification[]>(`${this.url}/unread/` + u.email,  {
+      headers: hdr
+    });
   }
 
   getUnreadCount(u: User) {
-    return this.http.get<number>(`${this.url}/count/` + u.email);
+    const token=window.localStorage.getItem('token');
+    const hdr = new HttpHeaders();
+    hdr.append('Authorization', token);
+    return this.http.get<number>(`${this.url}/count/` + u.email,  {
+      headers: hdr
+    });
   }
 
 
   deleteNotification(n: UserNotification) {
-    return this.http.delete(this.url + '/' + n.id);
+    const token=window.localStorage.getItem('token');
+    const hdr = new HttpHeaders();
+    hdr.append('Authorization', token);
+    return this.http.delete(this.url + '/' + n.id,  {
+      headers: hdr
+    });
   }
 
 

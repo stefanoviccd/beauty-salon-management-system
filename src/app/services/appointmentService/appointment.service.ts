@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/quotes */
 import { DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import { Appointment } from 'src/app/model/Appointment';
 import { Role } from 'src/app/model/Role';
 import { Treatment } from 'src/app/model/Treatment';
@@ -16,46 +17,72 @@ export class AppointmentService {
   pipe = new DatePipe('en-US');
   public appointments;
   constructor(private http: HttpClient) {
-//     const u=new User('dragana','dragana', 'Dragana','Stefanovic','0876655554', new Role('client'));
-//     const t=new Treatment('Manikir', '',1200,1);
-//     const a1=new Appointment(u,new Date(), '12.30',t, 'zakazan');
-//     const u2=new User('aleksandra','aleksandra', 'Ana','Furtula','0876655554', new Role('client'));
-//     const t2=new Treatment('Pedikir', '',1200,2);
-//     const a2=new Appointment(u2,new Date(), '12.00',t2, 'zahtevan');
-//     this.appointments=[a1,a2];
-//     this.appointments.forEach(e=>{
-//       e.date=this.pipe.transform(e.date,'dd/MM/yyyy');
-//  });
   }
   getFreeAppointmentsForTreatment(date: any, selectedTreatment: Treatment) {
+    const token=window.localStorage.getItem("token");
+    const hdr = new HttpHeaders();
+    hdr.append("Authorization", token);
    return null;}
 
   getScheduledAppointments(){
-    return this.http.get<Appointment[]>(`${this.url+"/scheduled"}`);
+    const token=window.localStorage.getItem("token");
+    const hdr = new HttpHeaders();
+    hdr.append("Authorization", token);
+    return this.http.get<Appointment[]>(`${this.url+"/scheduled"}`, {
+      headers: hdr
+    });
   }
 
   getRequiredAppointments(){
-    return this.http.get<Appointment[]>(`${this.url+"/required"}`);
+    const token=window.localStorage.getItem("token");
+    const hdr = new HttpHeaders();
+    hdr.append("Authorization", token);
+    return this.http.get<Appointment[]>(`${this.url+"/required"}`,  {
+      headers: hdr
+    });
   }
 
 
   delete(e: Appointment){
-    return this.http.delete(this.url + '/' + e.id);
+    const token=window.localStorage.getItem("token");
+    const hdr = new HttpHeaders();
+    hdr.append("Authorization", token);
+    return this.http.delete(this.url + '/' + e.id,  {
+      headers: hdr
+    });
   }
 
   reject(e: Appointment){
-    return this.http.put(this.url + '/reject', e.id);
+    const token=window.localStorage.getItem("token");
+    const hdr = new HttpHeaders();
+    hdr.append("Authorization", token);
+    return this.http.put(this.url + '/reject', e.id,  {
+      headers: hdr
+    });
   }
 
   schedule(e: Appointment){
-    return this.http.put(this.url + '/accept', e.id);
+    const token=window.localStorage.getItem("token");
+    const hdr = new HttpHeaders();
+    hdr.append("Authorization", token);
+    return this.http.put(this.url + '/accept', e.id,  {
+      headers: hdr
+    });
   }
 
   getUserAppointments(u: User){
-    return this.http.get<Appointment[]>(`${this.url + "/" + u.email}`);
+    const token=window.localStorage.getItem("token");
+    const hdr = new HttpHeaders();
+    hdr.append("Authorization", token);
+    return this.http.get<Appointment[]>(`${this.url + "/" + u.email}`,  {
+      headers: hdr
+    });
   }
 
-  addAppointment(treatmentId: number, username: string, day: number, month: number, year: number, hour: number, minute:number){
+  addAppointment(treatmentId: number, username: string, day: number, month: number, year: number, hour: number, minute: number){
+    const token=window.localStorage.getItem("token");
+    const hdr = new HttpHeaders();
+    hdr.append("Authorization", token);
     const body= JSON.parse(JSON.stringify({
       Email: username,
       TreatmentId: treatmentId,
@@ -66,11 +93,16 @@ export class AppointmentService {
       Minute: minute
     }));
 
-    return this.http.post(this.url, body);
+    return this.http.post(this.url, body,  {
+      headers: hdr
+    });
 
   }
 
-  isTimeAvailable(day: number, month: number, year: number, hour: number, minute:number){
+  isTimeAvailable(day: number, month: number, year: number, hour: number, minute: number){
+    const token=window.localStorage.getItem("token");
+    const hdr = new HttpHeaders();
+    hdr.append("Authorization", token);
     const body= JSON.parse(JSON.stringify({
       Day: day,
       Month: month,
@@ -79,7 +111,9 @@ export class AppointmentService {
       Minute: minute
     }));
 
-    return this.http.post(this.url + "/checkTime", body);
+    return this.http.post(this.url + "/checkTime", body,  {
+      headers: hdr
+    });
   }
 
 
