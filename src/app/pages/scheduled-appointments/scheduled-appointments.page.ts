@@ -24,7 +24,9 @@ export class ScheduledAppointmentsPage implements OnInit {
   ngOnInit() {
     this.getScheduledAppointments();
     this.getRequiredAppointments();
-    setTimeout(() => { this.ngOnInit() }, 1000 * 60 )
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 1000 * 60);
   }
 
   async showModal(e) {
@@ -35,22 +37,19 @@ export class ScheduledAppointmentsPage implements OnInit {
       showBackdrop: true,
       componentProps: {
         appointment: e,
-        scheduledAppointmentsPage: this
+        scheduledAppointmentsPage: this,
       },
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    if(data.action==='close'){}
-    else if(data.action==='schedule'){
+    if (data.action === 'close') {
+    } else if (data.action === 'schedule') {
       this.scheduleAppointment(data.appointment);
-    }
-    else if(data.action==='reject'){
+    } else if (data.action === 'reject') {
       this.rejectAppointment(data.appointment);
-    }
-    else if(data.action==='delete'){
+    } else if (data.action === 'delete') {
       this.deleteAppointment(data.appointment);
     }
-
   }
 
   getScheduledAppointments() {
@@ -77,13 +76,11 @@ export class ScheduledAppointmentsPage implements OnInit {
     return this.scheduledAppointments;
   }
 
-
   deleteAppointment(appointment: Appointment) {
-
     console.log('Trying to delete..');
     this.appointmentService.delete(appointment).subscribe(
       (data) => {
-
+        this.ngOnInit();
       },
       (error) => {
         console.log('Error occured', error);
@@ -94,7 +91,8 @@ export class ScheduledAppointmentsPage implements OnInit {
     console.log('Trying to schedule..');
     this.appointmentService.schedule(appointment).subscribe(
       (data) => {
-      //  this.closeModal();
+        //  this.closeModal();
+        this.ngOnInit();
       },
       (error) => {
         console.log('Error occured', error);
@@ -106,7 +104,8 @@ export class ScheduledAppointmentsPage implements OnInit {
     console.log('Trying to reject..');
     this.appointmentService.reject(appointment).subscribe(
       (data) => {
-       // this.closeModal();
+        // this.closeModal();
+        this.ngOnInit();
       },
       (error) => {
         console.log('Error occured', error);

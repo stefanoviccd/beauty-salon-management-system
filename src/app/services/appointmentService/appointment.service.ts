@@ -9,7 +9,7 @@ import { Treatment } from 'src/app/model/Treatment';
 import { User } from 'src/app/model/User';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppointmentService {
   url = 'https://localhost:7018/api/Appointment';
@@ -18,11 +18,6 @@ export class AppointmentService {
   public appointments;
   constructor(private http: HttpClient) {
   }
-  getFreeAppointmentsForTreatment(date: any, selectedTreatment: Treatment) {
-    const token=window.localStorage.getItem("token");
-    const hdr = new HttpHeaders();
-    hdr.append("Authorization", token);
-   return null;}
 
   getScheduledAppointments(){
     const token=window.localStorage.getItem("token");
@@ -41,6 +36,24 @@ export class AppointmentService {
       headers: hdr
     });
   }
+  getFreeAppointmentsForTreatment(date: Date, selectedTreatment: number) {
+    const day = date.getUTCDate();
+    const month = date.getUTCMonth() + 1;
+    const year = date.getFullYear();
+    const body = JSON.parse(
+      JSON.stringify({
+        Day: day,
+        Month: month,
+        Year: year
+      }));
+      const token=window.localStorage.getItem("token");
+      const hdr = new HttpHeaders();
+      hdr.append("Authorization", token);
+    return this.http.post<string[]>(`${this.url + '/freeAppointmentTime/' + selectedTreatment}`, body, {
+      headers: hdr
+    });
+  }
+
 
 
   delete(e: Appointment){
@@ -115,6 +128,4 @@ export class AppointmentService {
       headers: hdr
     });
   }
-
-
 }

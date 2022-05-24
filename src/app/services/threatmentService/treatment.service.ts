@@ -7,6 +7,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Treatment } from 'src/app/model/Treatment';
+import { AuthService } from '../authService/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ import { Treatment } from 'src/app/model/Treatment';
 export class TreatmentService {
   url = 'https://localhost:7018/api/Treatment';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getAllTreatments() {
     const token=window.localStorage.getItem('token');
@@ -23,6 +24,7 @@ export class TreatmentService {
     return this.http.get<Treatment[]>(`${this.url}`, {
       headers: hdr
     });
+
   }
 
   addTreatment(t: Treatment) {
