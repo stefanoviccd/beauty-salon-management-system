@@ -42,7 +42,7 @@
                 </ion-label>
 
                   <ion-select [(ngModel)]="time" [disabled]="isTimeDisabled()">
-                    <ion-select-option  *ngFor="let e of freeAppointments; index as i" value={{e.e}} >{{e}}</ion-select-option>
+                    <ion-select-option  *ngFor="let e of freeAppointments; index as i" value={{e.}} >{{e}}</ion-select-option>
                   </ion-select>
 
               </ion-item>
