@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   password: string;
   user: User;
   allet: any;
+  token: any;
 
   constructor(
     private route: Router,
@@ -39,7 +40,9 @@ export class LoginPage implements OnInit {
 
     this.authService.login(username, password).subscribe(
       (data) => {
-        this.user = data;
+        console.log(data)
+        this.user = data['user'];
+        //ZA TOKEN ----> data['token']
         this.authService.setLoggedInUser(this.user);
         if (this.user.role === 'CLIENT') {
           this.route.navigate(['home/myAppointments']);
