@@ -53,6 +53,10 @@ export class RegisterPage implements OnInit {
       if (!(this.password === this.confirmedpassword)) {
         this.allertAll('Greška', 'Lozinke se ne poklapaju.');
       } else {
+        if(!this.email.includes('@')){
+          this.allertAll('Greška', 'Unesite validnu e-mail adresu.');
+          return;
+        }
         this.authService
           .register(email, password, firstName, lastName)
           .subscribe(

@@ -117,6 +117,11 @@ return this.authService.getUserRole();
     this.router.navigate(['home/newAppointment']);
   }
   addTreatment(treatment: Treatment){
+    if(treatment.name==='' || treatment.name===undefined || treatment.description==='' || treatment.description===undefined ||
+     treatment.price=== undefined){
+      this.allertAll('Greška', 'Morate uneti sve podatke.');
+      return;
+    }
     this.treatmentService.addTreatment(treatment).subscribe(
       (result) => {
         this.allertAll('', 'Tretman uspešno dodat.');
@@ -129,6 +134,11 @@ return this.authService.getUserRole();
   }
 
   changeTreatmentInfo(treatment: Treatment){
+    if(treatment.name==='' || treatment.name===undefined || treatment.description==='' || treatment.description===undefined ||
+    treatment.price=== undefined){
+     this.allertAll('Greška', 'Morate uneti sve podatke.');
+     return;
+   }
     this.treatmentService.updateTreatment(treatment).subscribe(
       (result) => {
         this.allertAll('', 'Tretman uspešno promenjen.');

@@ -37,6 +37,21 @@ export class LoginPage implements OnInit {
 
   async loginUser() {
     const { username, password } = this;
+    if(username.trim()==='' || password.trim()===''){
+      this.allertAll(
+        'Greška',
+        'Morate uneti kredencijale.'
+      );
+        return;
+    }
+    if(!username.includes('@')){
+      this.allertAll(
+        'Greška',
+        'Unesite validnu e-mail adresu.'
+      );
+      return;
+
+    }
 
     this.authService.login(username, password).subscribe(
       (data) => {
