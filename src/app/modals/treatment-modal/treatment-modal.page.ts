@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AppointmentService } from 'src/app/services/appointmentService/appointment.service';
 
@@ -8,8 +8,8 @@ import { AppointmentService } from 'src/app/services/appointmentService/appointm
   styleUrls: ['./treatment-modal.page.scss'],
 })
 export class TreatmentModalPage implements OnInit {
-  public appointment;
-  public scheduledAppointmentsPage;
+  @Input() appointment;
+  @Input() scheduledAppointmentsPage;
   constructor(
     private modalController: ModalController,
     private appointmentService: AppointmentService

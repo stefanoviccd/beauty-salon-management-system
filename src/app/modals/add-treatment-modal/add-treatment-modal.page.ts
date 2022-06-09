@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import tr from 'date-fns/esm/locale/tr/index.js';
 import { Treatment } from 'src/app/model/Treatment';
@@ -11,11 +11,11 @@ import { TreatmentService } from 'src/app/services/threatmentService/treatment.s
   styleUrls: ['./add-treatment-modal.page.scss'],
 })
 export class AddTreatmentModalPage implements OnInit {
-  public title;
-  public add=true;
-  public change=false;
-  public treatment: Treatment;
-  public treatmentsPage: TreatmentsPage;
+  @Input() title;
+  @Input() treatment: Treatment;
+  @Input() treatmentsPage: TreatmentsPage;
+  @Input() add=true;
+  @Input() change=false;
 
   constructor(private modalController: ModalController, private treatmentService: TreatmentService) { }
 
